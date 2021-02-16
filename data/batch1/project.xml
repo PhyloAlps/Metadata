@@ -1,0 +1,9 @@
+<PROJECT_SET>
+   <PROJECT alias="phylonorway_batch1">
+      <TITLE>1500 genome skims from the Norwegian arctic vascular flora</TITLE>
+      <DESCRIPTION></DESCRIPTION>
+      <SUBMISSION_PROJECT>
+         <SEQUENCING_PROJECT/>
+      </SUBMISSION_PROJECT>
+   </PROJECT>
+</PROJECT_SET>
