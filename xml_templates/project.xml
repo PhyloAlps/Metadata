@@ -1,0 +1,9 @@
+<PROJECT_SET>
+   <PROJECT alias="phylonorway_@@Project_Dir@@">
+      <TITLE>@@Project_Title@@</TITLE>
+      <DESCRIPTION>@@Project_Description@@</DESCRIPTION>
+      <SUBMISSION_PROJECT>
+         <SEQUENCING_PROJECT/>
+      </SUBMISSION_PROJECT>
+   </PROJECT>
+</PROJECT_SET>

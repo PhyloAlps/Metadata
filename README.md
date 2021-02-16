@@ -18,7 +18,7 @@ XML files required by the submission process for the sample description.
 
 The `data` directory is splited in a `common` directory which contains every files related to the *PhyloNorway* umbrella project and one directory by sub project. As each sub project is corresponding to a
 set (batch) of samples, I propose to name them `batchXX` where `XX` is an ordinal number padded on
-two digits.
+two digits (*e.g.* `batch01`).
 
 ### The `xml_template` directory
 
