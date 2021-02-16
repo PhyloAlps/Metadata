@@ -1,7 +1,8 @@
 <PROJECT_SET xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <PROJECT center_name="" alias="TODO:alias">
-        <TITLE>TODO:Title_text_here</TITLE>
-        <DESCRIPTION>TODO:Description_text_here</DESCRIPTION>
+    <PROJECT center_name="Tromsoe University Museum" alias="Norwegian Centre for Environmental DNA from Arctic Ecosystems Through Time (NEAT)">
+        <NAME>PhyloNorway</NAME> 
+        <TITLE>genome skims of the vascular plant flora of Norway and polar regions</TITLE>
+        <DESCRIPTION>Genome skimming has the potential for generating large data sets for DNA barcoding and wider biodiversity genomic studies, particularly via the assembly and annotation of full chloroplast (cpDNA) and nuclear ribosomal DNA (nrDNA) sequences. We genome skims of 2051 herbarium specimens from Norway/Polar regions. </DESCRIPTION>
         <UMBRELLA_PROJECT/>
         <RELATED_PROJECTS>
           <RELATED_PROJECT>
