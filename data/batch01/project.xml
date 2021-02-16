@@ -1,7 +1,7 @@
 <PROJECT_SET>
-   <PROJECT alias="phylonorway_batch1">
+   <PROJECT alias="phylonorway_batch01">
       <TITLE>1500 genome skims from the Norwegian arctic vascular flora</TITLE>
-      <DESCRIPTION></DESCRIPTION>
+      <DESCRIPTION>That project includes the genome skims for 15XX specimens of vascular plants of the Norwegian arctic flora. They belongs XXX genera, and XXX families.</DESCRIPTION>
       <SUBMISSION_PROJECT>
          <SEQUENCING_PROJECT/>
       </SUBMISSION_PROJECT>
