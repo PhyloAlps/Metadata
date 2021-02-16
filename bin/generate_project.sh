@@ -1,5 +1,24 @@
 #!/bin/bash
 
+##################################
+#
+# The generate_project.sh script allows for creating
+# or modifying a project directory. It takes in charge
+# the creation of the project subdirectory in the data
+# directory and update or create the project.xml file
+# according to the data contained in the data/projects.csv 
+# file. The script accepts a single argument, the name of the
+# subproject. That name must be identical to the name of the project
+# declared in the first column of the csv file.
+#
+# Example:
+#
+# bin/generate_project.sh batch01
+#
+##################################
+
+
+
 # This command allows for identifying the directory
 # where the scripts are stored. Later on every paths
 # will be setup relatively to that one
@@ -42,6 +61,7 @@ relative2absolute(){
 
 HOMEDIR=$(relative2absolute $THIS_DIR/..)
 BIN_DIR="${HOMEDIR}/bin"
+LIB_DIR="${HOMEDIR}/lib"
 TEMPLATE_DIR="${HOMEDIR}/xml_templates"
 DATA_DIR="${HOMEDIR}/data"
 
@@ -56,7 +76,7 @@ mkdir -p "${DATA_DIR}/${PROJECT_NAME}"
 
 # Build the xml project file
 
-${BIN_DIR}/process_template.awk -v ENTRY="${PROJECT_NAME}" \
+${LIB_DIR}/process_template.awk -v ENTRY="${PROJECT_NAME}" \
            ${PROJECT_TEMPLATE} \
            ${PROJECT_DATA} \
            > "${DATA_DIR}/${PROJECT_NAME}/project.xml"
