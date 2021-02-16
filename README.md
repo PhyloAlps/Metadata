@@ -10,7 +10,13 @@ The `PhyloNorway metadata` project is aiming to store every files related to the
 The `bin` directory contains every scripts (mainly bash scripts) needed to submit 
 PhyloNorway data to the ENA database.
 
-### The `data`directory
+### The `lib` directory
+
+The `lib` directory contains pieace of code that end users are not supposed to use
+directly. The scripts included in that directory are called from scripts located in
+the `bin` directory. 
+
+### The `data` directory
 
 The `data` directory contains every XML files describing the samples and sequences.
 It also contains the `metadata_sample.csv` file containing every data needed to generate every
