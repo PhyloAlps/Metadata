@@ -1,4 +1,4 @@
-# The PhyloNorway metadata project
+= The PhyloNorway metadata project
 
 The `PhyloNorway metadata` project is aiming to store every files related to the submission of the PhyloNorway genome skimming project to the EBI[^EBI] ENA[^ENA] SRA[^SRA] database.
 
