@@ -54,3 +54,37 @@ It contains three columns :
    </PROJECT>
 </PROJECT_SET>
 ```
+
+### `TestMetadata.csv`
+
+This is a test metadata file that contains the data from 10 samples. It contains 25 columns, though not all filled in or relevant:
+
+1. The sample batch.
+2. The Tromso herbarium sample code.
+3. The BOLD sample code. Note: the same as the herbarium code with a "_sg" suffix.
+4. Species.
+5. Family.
+6. The NCBI taxonID.
+7. An alternate NCBI taxonID to species or genus level if the requested ID in column 6 is not active.
+8. Note explaining wich alternate NCBI taxonID was used.
+9. The sample collection date in dd/mm/yyyy format.
+10. The collection month.
+11. The sample collector in "lastname, firstname" format. Multiple collectors are separated by ";".
+12. Sampling location. Regions are separated by comma's and in most cases start with the country (need to correct some that have info missing.). Some descriptions are more elaborate than others.
+13. Latitude (decimal).
+14. Longitude (decimal).
+15. Sample age when extracted.
+16. Weight of the extracted material in grams. Missing for some samples.
+17. Extraction concentration in ng/ul. Missing for some samples
+18. Genoscope sequence library in "sequence run:library" format.
+19. Library read count.
+20. Assembled chloroplast length. Not available for all samples.
+21. Number of chloroplast contigs. Not available for all samples.
+22. Chloroplast coverage. Not available for all samples.
+23. Assembled nrDNA length. Not available for all samples.
+24. Number of nrDNA contigs. Not available for all samples.
+25. Chloroplast nrDNA. Not available for all samples.
+
+
+
+
