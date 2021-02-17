@@ -65,7 +65,9 @@ LIB_DIR="${HOMEDIR}/lib"
 TEMPLATE_DIR="${HOMEDIR}/xml_templates"
 DATA_DIR="${HOMEDIR}/data"
 CSV_DIR="${DATA_DIR}/csv"
+XSD_DIR="${LIB_DIR}/ena_xsd"
 
+XSD_FILE="${XSD_DIR}/ENA.project.xsd"
 
 PROJECT_TEMPLATE="${TEMPLATE_DIR}/project.xml"
 PROJECT_DATA="${CSV_DIR}/projects.csv"
@@ -84,3 +86,19 @@ ${LIB_DIR}/process_template.awk -v ENTRY="${PROJECT_NAME}" \
            > "${DATA_DIR}/${PROJECT_NAME}/project.xml"
 
 
+# If no XSD files are present then download them
+
+if [ ! -f "${XSD_DIR}/xsd_version.txt" ] || [ ! -f "${XSD_FILE}" ] ; then
+  rm -rf "${XSD_DIR}/xsd_version.txt"
+  ${LIB_DIR}/update_xsd.sh
+fi
+
+valid_xml=$(xmllint --schema "${XSD_FILE}" \
+                    "${DATA_DIR}/${PROJECT_NAME}/project.xml" \
+                    > /dev/null && echo ok || echo bad)
+
+if [[ "$valid_xml" == "bad" ]] ; then
+  echo "** The produced XML file : ${DATA_DIR}/${PROJECT_NAME}/project.xml is not valid **" 1>&2
+  cat "${DATA_DIR}/${PROJECT_NAME}/project.xml" 1>&2
+  rm -f "${DATA_DIR}/${PROJECT_NAME}/project.xml"
+fi
