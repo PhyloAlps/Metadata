@@ -64,9 +64,11 @@ BIN_DIR="${HOMEDIR}/bin"
 LIB_DIR="${HOMEDIR}/lib"
 TEMPLATE_DIR="${HOMEDIR}/xml_templates"
 DATA_DIR="${HOMEDIR}/data"
+CSV_DIR="${DATA_DIR}/csv"
+
 
 PROJECT_TEMPLATE="${TEMPLATE_DIR}/project.xml"
-PROJECT_DATA="${DATA_DIR}/projects.csv"
+PROJECT_DATA="${CSV_DIR}/projects.csv"
 
 PROJECT_NAME=$1
 
