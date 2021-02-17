@@ -34,6 +34,24 @@ relative2absolute(){
 )
 }
 
+receipt_info_messages() {
+   xmllint --noblanks --xpath '/RECEIPT/MESSAGES/INFO' - 2>/dev/null <<< $* \
+      | sed 's@</INFO>@\n@g' \
+      | sed 's@<INFO>@@g'
+}
+
+receipt_error_messages() {
+   xmllint --noblanks --xpath '/RECEIPT/MESSAGES/ERROR' - 2>/dev/null <<< $* \
+      | sed 's@</ERROR>@\n@g' \
+      | sed 's@<ERROR>@@g'
+}
+
+receipt_project_accession() {
+   xmllint --noblanks --xpath '/RECEIPT/PROJECT/@accession' - 2>/dev/null <<< $* \
+      | sed 's/accession=//' \
+      | sed 's/"//g' \
+      | sed 's/^ *//' | sed 's/ *$//'
+}
 
 HOMEDIR=$(relative2absolute $THIS_DIR/..)
 BIN_DIR="${HOMEDIR}/bin"
@@ -48,3 +66,4 @@ XSD_FILE="${XSD_DIR}/ENA.project.xsd"
 PROJECT_TEMPLATE="${TEMPLATE_DIR}/project.xml"
 PROJECT_DATA="${CSV_DIR}/projects.csv"
 
+UMBRELLA="PhyloNorway"
