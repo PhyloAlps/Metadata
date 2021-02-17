@@ -18,59 +18,21 @@
 ##################################
 
 
-
 # This command allows for identifying the directory
 # where the scripts are stored. Later on every paths
 # will be setup relatively to that one
 THIS_DIR="$(dirname ${BASH_SOURCE[0]})"
 
-# This function transforms a relative path to an absolute one
-# starting from the root (/) of the directory tree.
-relative2absolute(){
-  local thePath
-  if [[ ! "$1" =~ ^/ ]];then
-    thePath="$PWD/$1"
-  else
-    thePath="$1"
-  fi
-  echo "$thePath"|(
-  IFS=/
-  read -a parr
-  declare -a outp
-  for i in "${parr[@]}";do
-    case "$i" in
-    ''|.) continue ;;
-    ..)
-      len=${#outp[@]}
-      if ((len==0));then
-        continue
-      else
-        unset outp[$((len-1))] 
-      fi
-      ;;
-    *)
-      len=${#outp[@]}
-      outp[$len]="$i"
-      ;;
-    esac
-  done
-  echo /"${outp[*]}"
-)
-}
+# This one is for loading a bash script containing every function
+# common to every bash scripts
 
+. "$THIS_DIR/../lib/bashlib.sh"
 
-HOMEDIR=$(relative2absolute $THIS_DIR/..)
-BIN_DIR="${HOMEDIR}/bin"
-LIB_DIR="${HOMEDIR}/lib"
-TEMPLATE_DIR="${HOMEDIR}/xml_templates"
-DATA_DIR="${HOMEDIR}/data"
-CSV_DIR="${DATA_DIR}/csv"
-XSD_DIR="${LIB_DIR}/ena_xsd"
-
-XSD_FILE="${XSD_DIR}/ENA.project.xsd"
-
-PROJECT_TEMPLATE="${TEMPLATE_DIR}/project.xml"
-PROJECT_DATA="${CSV_DIR}/projects.csv"
+#########################################
+#
+# Here start the actual script code
+#
+#########################################
 
 PROJECT_NAME=$1
 
