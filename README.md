@@ -41,13 +41,15 @@ Documentation for programmatic access can be found at the following place:
 https://ena-docs.readthedocs.io/en/latest/submit/general-guide/programmatic.html
 
 
-### Samples attributes have to to follow checklists
+### Samples attributes have to follow checklists
+
+The complete set of checklists is available at EBI.
 
 https://www.ebi.ac.uk/ena/browser/checklists
 
-For PhyloNorway samples we are following the ERC000037.
+For PhyloNorway samples we are following the [ERC000037](https://www.ebi.ac.uk/ena/browser/view/ERC000037) checklists.
 
-https://www.ebi.ac.uk/ena/browser/view/ERC000037
+
 
 Among the proposed attributes the following ones will be documùented :
 
