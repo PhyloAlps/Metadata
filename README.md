@@ -50,6 +50,5 @@ https://www.ebi.ac.uk/ena/browser/checklists
 For PhyloNorway samples we are following the [ERC000037](https://www.ebi.ac.uk/ena/browser/view/ERC000037) checklists.
 
 
-
 Among the proposed attributes the following ones will be documùented :
 
