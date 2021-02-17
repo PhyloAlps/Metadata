@@ -34,3 +34,9 @@ medata files automaticaly generated from the CVS files describing samples and se
 <a name="EBI"><sup>[1]</sup></a>:EBI: - [European Bioinformatic Institut](https://ebi.ac.uk).
 
 <a name="ENA"><sup>[2]</sup></a>:ENA: - [European Nucleotide Archive](https://www.ebi.ac.uk/ena).
+
+## Some information about ENA submission
+
+Documentation for programatic access can be found at the following place:
+
+https://ena-docs.readthedocs.io/en/latest/submit/general-guide/programmatic.html
