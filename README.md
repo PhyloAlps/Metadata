@@ -40,3 +40,15 @@ medata files automaticaly generated from the CVS files describing samples and se
 Documentation for programatic access can be found at the following place:
 
 https://ena-docs.readthedocs.io/en/latest/submit/general-guide/programmatic.html
+
+
+## Samples attributes have to to follow checklists
+
+https://www.ebi.ac.uk/ena/browser/checklists
+
+For PhyloNorway samples we are following the ERC000037.
+
+https://www.ebi.ac.uk/ena/browser/view/ERC000037
+
+Among the proposed attributes the following ones will be documùented :
+
