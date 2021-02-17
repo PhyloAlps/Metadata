@@ -103,6 +103,9 @@ if [[ ! -z "${ERRORS}" ]] ; then
     echo "${ERRORS}" 1>&2
     receipt_info_messages "$receipt" 1>&2
     echo "================================================" 1>&2
+
+    echo "${receipt}" > "${DATA_DIR}/common/umbrella:error.receipt.xml"
+
     exit 1
 fi
 

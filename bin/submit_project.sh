@@ -117,6 +117,9 @@ if [[ ! -z "${ERRORS}" ]] ; then
     echo "${ERRORS}" 1>&2
     receipt_info_messages "$receipt" 1>&2
     echo "================================================" 1>&2
+
+    echo "${receipt}" > "${PROJECT_DIR}/project:error.receipt.xml"
+
     exit 1
 fi
 
@@ -157,7 +160,31 @@ fi
 
 if xmllint --xpath "//PROJECT/RELATED_PROJECTS" \
            "${DATA_DIR}/common/${UMBRELLA_XML}" > /dev/null ; then 
-    echo "Umbrella project have already declared related project"  1>&2
+    echo "Umbrella project have already declared related projects"  1>&2
+
+    if xmllint --xpath "//PROJECT/RELATED_PROJECTS/RELATED_PROJECT/CHILD_PROJECT[@accession='${RETURN_AC}']" \
+           "${DATA_DIR}/common/${UMBRELLA_XML}" > /dev/null ; then 
+
+        echo "Umbrella project have already declared ${RETURN_AC} project"  1>&2
+
+        exit 0
+    else
+        XML_PATCH="<RELATED_PROJECT>
+                    <CHILD_PROJECT accession=\"${RETURN_AC}\"/>
+                   </RELATED_PROJECT>"
+
+        # Remove new lines characters
+        XML_PATCH=$(tr '\n' ' ' <<< "$XML_PATCH" | sed 's/"/\\"/g')
+
+        sed "s@<RELATED_PROJECTS>@<RELATED_PROJECTS>${XML_PATCH}@" \
+            "${DATA_DIR}/common/${UMBRELLA_XML}" \
+            | xmllint --format - \
+            > "${DATA_DIR}/common/umbrella_tmp_$$.xml"
+
+        mv "${DATA_DIR}/common/umbrella_tmp_$$.xml" \
+        "${DATA_DIR}/common/${UMBRELLA_XML}"
+
+    fi
 else
     echo "This is the first related project declared for that umbrella"
 
