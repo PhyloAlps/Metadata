@@ -69,27 +69,14 @@ else
     SERVER="$TEST_SERVER"
 fi
 
-#
-# Looks at ~/.ENA_passwd
-#
+# Loads webin credential
+webin_credentials
 
-if [[ ! -f ~/.ENA_passwd ]] ; then
-    echo "You must create a file in your home directory called : .ENA_passwd"  1>&2
-    echo "That file must contain a line following the format   : ${UMBRELLA}:LOGIN:PASSWD"  1>&2
-    echo "With LOGIN your actual ENA user id, something like Webin-XXXXX with X being a digit." 1>&2
-    echo "And PASSWD, the password associated with that account" 1>&2
-    exit 1
-fi
-
-#
-# Get the LOGIN and PASSWD information for the umbrella project
-#
-
-LOGIN=$(awk -F':' -v umbrella="$UMBRELLA" '($1==umbrella) {print $2}' < ~/.ENA_passwd)
-PASSWD=$(awk -F':' -v umbrella="$UMBRELLA" '($1==umbrella) {print $3}' < ~/.ENA_passwd)
-
-UMBRELLA_XML=$(basename $(ls ${DATA_DIR}/common/umbrella*.xml))
+UMBRELLA_XML=$(basename $(ls -1 ${DATA_DIR}/common/umbrella*.xml \
+                             | grep -v '\.receipt\.xml$'))
 UMBRELLA_AC=$(awk -F':' '{print $2}' <<< "${UMBRELLA_XML/.xml/}")
+
+echo "Using umbrella XML file :  ${UMBRELLA_XML}"  1>&2
 
 if [[ -z "${UMBRELLA_AC}" ]] ; then
     echo "This umbrella project has no Accession Number" 1>&2
@@ -131,4 +118,6 @@ curl -u "$LOGIN:$PASSWD" \
 rm -f "${DATA_DIR}/common/${UMBRELLA_XML}"
 mv "${DATA_DIR}/common/umbrella_tmp_$$.xml" \
    "${DATA_DIR}/common/umbrella:${RETURN_AC}.xml"
+
+echo "${receipt}" > "${DATA_DIR}/common/umbrella:${RETURN_AC}.receipt.xml"
 
