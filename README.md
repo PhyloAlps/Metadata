@@ -36,12 +36,12 @@ medata files automaticaly generated from the CVS files describing samples and se
 
 ## Some information about ENA submission
 
-Documentation for programatic access can be found at the following place:
+Documentation for programmatic access can be found at the following place:
 
 https://ena-docs.readthedocs.io/en/latest/submit/general-guide/programmatic.html
 
 
-## Samples attributes have to to follow checklists
+### Samples attributes have to to follow checklists
 
 https://www.ebi.ac.uk/ena/browser/checklists
 
