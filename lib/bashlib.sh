@@ -87,9 +87,5 @@ DATA_DIR="${HOMEDIR}/data"
 CSV_DIR="${DATA_DIR}/csv"
 XSD_DIR="${LIB_DIR}/ena_xsd"
 
-XSD_FILE="${XSD_DIR}/ENA.project.xsd"
-
-PROJECT_TEMPLATE="${TEMPLATE_DIR}/project.xml"
-PROJECT_DATA="${CSV_DIR}/projects.csv"
 
 UMBRELLA="PhyloNorway"

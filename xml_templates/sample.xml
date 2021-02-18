@@ -1,0 +1,72 @@
+<!-- sample:@@Tromso_herbarium_code@@.xml -->
+<?xml version="1.0" encoding="UTF-8"?>
+<SAMPLE_SET>
+  <SAMPLE alias="@@Tromso_herbarium_code@@" center_name="">
+    <TITLE>@@Tromso_herbarium_code@@ herbarium sample of @@Species@@</TITLE>
+    <SAMPLE_NAME>
+      <TAXON_ID>@@NCBI_corrected_TaxonID@@</TAXON_ID>
+      <SCIENTIFIC_NAME>@@Species@@</SCIENTIFIC_NAME>
+      <COMMON_NAME></COMMON_NAME>
+    </SAMPLE_NAME>
+    <SAMPLE_ATTRIBUTES>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>investigation type</TAG>
+        <VALUE>genome skimming</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>collection date</TAG>
+        <VALUE>@@Collection_date@@</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>geographic location (country)</TAG>
+        <VALUE>@@Sampling_country@@</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>geographic location (latitude)</TAG>
+        <VALUE>@@Sampling_latitude@@</VALUE>
+    	<UNITS>DD</UNITS>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>geographic location (longitude)</TAG>
+        <VALUE>@@Sampling_longitude@@</VALUE>
+    	<UNITS>DD</UNITS>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>environment (biome)</TAG>
+        <VALUE>terrestrial biome</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>environment (feature)</TAG>
+        <VALUE>natural environment</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>environment (material)</TAG>
+        <VALUE>plant matter</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+	    <TAG>plant structure</TAG>
+    	<VALUE>leaf (PO_0025034)</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>plant developmental stage</TAG>
+        <VALUE>@@TODO@@</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>plant growth medium</TAG>
+        <VALUE>soil</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>collected_by</TAG>
+        <VALUE>@@Sample_collector@@</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>source material identifiers</TAG>
+        <VALUE>Tromsoe herbarium specimen @@Tromso_herbarium_code@@</VALUE>
+      </SAMPLE_ATTRIBUTE>
+      <SAMPLE_ATTRIBUTE>
+        <TAG>ENA-CHECKLIST</TAG>
+        <VALUE>ERC000037</VALUE>
+      </SAMPLE_ATTRIBUTE>
+    </SAMPLE_ATTRIBUTES>
+  </SAMPLE>
+</SAMPLE_SET>

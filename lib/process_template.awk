@@ -161,7 +161,7 @@ BEGIN {RS="\0"; FIRST=0}
     result=TEMPLATE;
 
     if (ncol!=num_fields) {
-        printf "ERROR: %s (%d) -> %s\n", csverr, num_fields, $0; 
+        printf "ERROR: %s (%d/%d) -> %s\n", csverr, ncol, num_fields, $0; 
     } else {
         for (i=0; i<ncol; i++) {
             pattern="@@" HEADER[i] "@@";
@@ -175,6 +175,6 @@ BEGIN {RS="\0"; FIRST=0}
 (FIRST==0){
         TEMPLATE=$0;
         FIRST=1;
-        RS="\n"
-
+        RS="\n";
+        nextfile;
     } 

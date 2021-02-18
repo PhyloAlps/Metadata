@@ -35,6 +35,8 @@ THIS_DIR="$(dirname ${BASH_SOURCE[0]})"
 #########################################
 
 PROJECT_NAME=$1
+PROJECT_TEMPLATE="${TEMPLATE_DIR}/project.xml"
+PROJECT_DATA="${CSV_DIR}/projects.csv"
 
 # Build the project directory in the DATA_DIR
 
@@ -47,6 +49,8 @@ ${LIB_DIR}/process_template.awk -v ENTRY="${PROJECT_NAME}" \
            ${PROJECT_DATA} \
            > "${DATA_DIR}/${PROJECT_NAME}/project.xml"
 
+# The XSD file correponding to a project
+XSD_FILE="${XSD_DIR}/ENA.project.xsd"
 
 # If no XSD files are present then download them
 
