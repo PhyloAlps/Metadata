@@ -70,20 +70,21 @@ This is a test metadata file that contains the data from 10 samples. It contains
 9. The sample collection date in dd/mm/yyyy format.
 10. The collection month.
 11. The sample collector in "lastname, firstname" format. Multiple collectors are separated by ";".
-12. Sampling location. Regions are separated by comma's and in most cases start with the country (need to correct some that have info missing.). Some descriptions are more elaborate than others.
-13. Latitude (decimal).
-14. Longitude (decimal).
-15. Sample age when extracted.
-16. Weight of the extracted material in grams. Missing for some samples.
-17. Extraction concentration in ng/ul. Missing for some samples
-18. Genoscope sequence library in "sequence run:library" format.
-19. Library read count.
-20. Assembled chloroplast length. Not available for all samples.
-21. Number of chloroplast contigs. Not available for all samples.
-22. Chloroplast coverage. Not available for all samples.
-23. Assembled nrDNA length. Not available for all samples.
-24. Number of nrDNA contigs. Not available for all samples.
-25. Chloroplast nrDNA. Not available for all samples.
+12. Country
+13. Sampling location. Regions are separated by comma's and in most cases start with the country (need to correct some that have info missing.). Some descriptions are more elaborate than others.
+14. Latitude (decimal).
+15. Longitude (decimal).
+16. Sample age when extracted.
+17. Weight of the extracted material in grams. Missing for some samples.
+18. Extraction concentration in ng/ul. Missing for some samples
+19. Genoscope sequence library in "sequence run:library" format.
+20. Library read count.
+21. Assembled chloroplast length. Not available for all samples.
+22. Number of chloroplast contigs. Not available for all samples.
+23. Chloroplast coverage. Not available for all samples.
+24. Assembled nrDNA length. Not available for all samples.
+25. Number of nrDNA contigs. Not available for all samples.
+26. Chloroplast nrDNA. Not available for all samples.
 
 
 
