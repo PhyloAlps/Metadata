@@ -13,7 +13,7 @@
 #
 # Example:
 #
-# bin/generate_project.sh batch01
+# bin/generate_project.sh PhyloNorway batch01
 #
 ##################################
 
@@ -34,9 +34,11 @@ THIS_DIR="$(dirname ${BASH_SOURCE[0]})"
 #
 #########################################
 
-PROJECT_NAME=$1
+UMBRELLA_NAME=$1
+PROJECT_NAME=$2
 PROJECT_TEMPLATE="${TEMPLATE_DIR}/project.xml"
 PROJECT_DATA="${CSV_DIR}/projects.csv"
+PROJECT_XML="${DATA_DIR}/${PROJECT_NAME}/project.${PROJECT_NAME}.xml"
 
 # Build the project directory in the DATA_DIR
 
@@ -47,7 +49,7 @@ mkdir -p "${DATA_DIR}/${PROJECT_NAME}"
 ${LIB_DIR}/process_template.awk -v ENTRY="${PROJECT_NAME}" \
            ${PROJECT_TEMPLATE} \
            ${PROJECT_DATA} \
-           > "${DATA_DIR}/${PROJECT_NAME}/project.xml"
+           > "${PROJECT_XML}"
 
 # The XSD file correponding to a project
 XSD_FILE="${XSD_DIR}/ENA.project.xsd"
@@ -60,11 +62,11 @@ if [ ! -f "${XSD_DIR}/xsd_version.txt" ] || [ ! -f "${XSD_FILE}" ] ; then
 fi
 
 valid_xml=$(xmllint --schema "${XSD_FILE}" \
-                    "${DATA_DIR}/${PROJECT_NAME}/project.xml" \
+                    "${PROJECT_XML}" \
                     > /dev/null && echo ok || echo bad)
 
 if [[ "$valid_xml" == "bad" ]] ; then
-  echo "** The produced XML file : ${DATA_DIR}/${PROJECT_NAME}/project.xml is not valid **" 1>&2
-  cat "${DATA_DIR}/${PROJECT_NAME}/project.xml" 1>&2
-  rm -f "${DATA_DIR}/${PROJECT_NAME}/project.xml"
+  echo "** The produced XML file : ${PROJECT_XML} is not valid **" 1>&2
+  cat "${PROJECT_XML}" 1>&2
+  rm -f "${PROJECT_XML}"
 fi
