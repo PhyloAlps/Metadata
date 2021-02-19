@@ -1,8 +1,7 @@
 <?xml version="1.0"?>
 <PROJECT_SET>
-  <PROJECT accession="PRJEB43152" alias="PhyloNorway" center_name="Tromsoe University Museum">
+  <PROJECT alias="PhyloNorway" center_name="Tromsoe University Museum">
     <IDENTIFIERS>
-      <PRIMARY_ID>PRJEB43152</PRIMARY_ID>
       <SUBMITTER_ID namespace="Tromsoe University Museum">PhyloNorway</SUBMITTER_ID>
     </IDENTIFIERS>
     <NAME>The PhyloNorway Genome skimming project</NAME>
