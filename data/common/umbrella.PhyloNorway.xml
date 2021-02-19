@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<PROJECT_SET>
+  <PROJECT accession="PRJEB43152" alias="PhyloNorway" center_name="Tromsoe University Museum">
+    <IDENTIFIERS>
+      <PRIMARY_ID>PRJEB43152</PRIMARY_ID>
+      <SUBMITTER_ID namespace="Tromsoe University Museum">PhyloNorway</SUBMITTER_ID>
+    </IDENTIFIERS>
+    <NAME>The PhyloNorway Genome skimming project</NAME>
+    <TITLE>Genome skims of the vascular plant flora of Norway and polar regions</TITLE>
+    <DESCRIPTION>Genome skimming has the potential for generating large data sets for DNA barcoding and wider biodiversity genomic studies, particularly via the assembly and annotation of full chloroplast (cpDNA) and nuclear ribosomal DNA (nrDNA) sequences. We are aiming to provide genome skims of 2051 herbarium specimens from Norway/Polar regions.</DESCRIPTION>
+    <UMBRELLA_PROJECT/>
+    <PROJECT_LINKS>
+        <PROJECT_LINK>
+          <XREF_LINK>
+              <DB>PUBMED</DB>
+              <ID>32244605</ID> 
+          </XREF_LINK>
+        </PROJECT_LINK>
+    </PROJECT_LINKS>
+  </PROJECT>
+</PROJECT_SET>
