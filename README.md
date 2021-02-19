@@ -36,6 +36,10 @@ medata files automaticaly generated from the CVS files describing samples and se
 
 ## Some information about ENA submission
 
+Global information on the ENA submission :
+
+https://buildmedia.readthedocs.org/media/pdf/ena-docs/latest/ena-docs.pdf
+
 Documentation for programmatic access can be found at the following place:
 
 https://ena-docs.readthedocs.io/en/latest/submit/general-guide/programmatic.html
