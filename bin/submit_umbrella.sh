@@ -8,7 +8,7 @@
 #
 # Example:
 #
-# bin/submit_umbrella.sh
+# bin/submit_umbrella.sh PhyloNorway
 #
 ##################################
 
@@ -72,9 +72,12 @@ fi
 # Loads webin credential
 webin_credentials
 
-UMBRELLA_XML=$(basename $(ls -1 ${DATA_DIR}/common/umbrella*.xml \
+#
+UMBRELLA_NAME=$1
+
+UMBRELLA_XML=$(basename $(ls -1 ${DATA_DIR}/common/umbrella.${UMBRELLA_NAME}*.xml \
                              | grep -v '\.receipt\.xml$'))
-UMBRELLA_AC=$(awk -F':' '{print $2}' <<< "${UMBRELLA_XML/.xml/}")
+UMBRELLA_AC=$(awk -F'\.' '(NF==4) {print $3}' <<< "${UMBRELLA_XML}")
 
 echo "Using umbrella XML file :  ${UMBRELLA_XML}"  1>&2
 
@@ -104,7 +107,7 @@ if [[ ! -z "${ERRORS}" ]] ; then
     receipt_info_messages "$receipt" 1>&2
     echo "================================================" 1>&2
 
-    echo "${receipt}" > "${DATA_DIR}/common/umbrella:error.receipt.xml"
+    echo "${receipt}" > "${DATA_DIR}/common/umbrella.${UMBRELLA_NAME}.error.receipt.xml"
 
     exit 1
 fi
@@ -116,11 +119,11 @@ RETURN_AC=$(receipt_project_accession "$receipt")
 echo "Project got Accession number : ${RETURN_AC}" 1>&2
 
 curl -u "$LOGIN:$PASSWD" \
-     "${SERVER}/projects/${RETURN_AC}" > "${DATA_DIR}/common/umbrella_tmp_$$.xml"
+     "${SERVER}/projects/${RETURN_AC}" > "${DATA_DIR}/common/umbrella.${UMBRELLA_NAME}_$$.xml.tmp"
 
 rm -f "${DATA_DIR}/common/${UMBRELLA_XML}"
-mv "${DATA_DIR}/common/umbrella_tmp_$$.xml" \
-   "${DATA_DIR}/common/umbrella:${RETURN_AC}.xml"
+mv "${DATA_DIR}/common/umbrella.${UMBRELLA_NAME}_$$.xml.tmp" \
+   "${DATA_DIR}/common/umbrella.${UMBRELLA_NAME}.${RETURN_AC}.xml"
 
-echo "${receipt}" > "${DATA_DIR}/common/umbrella:${RETURN_AC}.receipt.xml"
+echo "${receipt}" > "${DATA_DIR}/common/umbrella.${UMBRELLA_NAME}.${RETURN_AC}.receipt.xml"
 
