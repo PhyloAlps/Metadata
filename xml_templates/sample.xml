@@ -4,7 +4,7 @@
   <SAMPLE alias="@@Tromso_herbarium_code@@" center_name="">
     <TITLE>@@Tromso_herbarium_code@@ herbarium sample of @@Species@@</TITLE>
     <SAMPLE_NAME>
-      <TAXON_ID>@@NCBI_corrected_TaxonID@@</TAXON_ID>
+      <TAXON_ID>@@NCBI_TaxonID@@</TAXON_ID>
       <SCIENTIFIC_NAME>@@Species@@</SCIENTIFIC_NAME>
       <COMMON_NAME></COMMON_NAME>
     </SAMPLE_NAME>
