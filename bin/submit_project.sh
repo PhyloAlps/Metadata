@@ -9,7 +9,7 @@
 #
 # Example:
 #
-# bin/submit_project.sh batch01
+# bin/submit_project.sh PhyloNorway batch01
 #
 ##################################
 
@@ -71,8 +71,10 @@ else
 fi
 
 # Consider the first positional argument as the project name
-PROJECT="$1"
-PROJECT_DIR="${DATA_DIR}/${PROJECT}"
+
+UMBRELLA_NAME="$1"
+PROJECT_NAME="$2"
+PROJECT_DIR="${DATA_DIR}/${PROJECT_NAME}"
 
 if [[ ! -d "${PROJECT_DIR}" ]] ; then
     echo "ERROR: the project directory doesn't exist you must create it first"
@@ -86,7 +88,7 @@ webin_credentials
 # Look for the XML file describing the project
 PROJECT_XML=$(basename $(ls -1 ${PROJECT_DIR}/project*.xml  \
                              | grep -v '\.receipt\.xml$'))
-PROJECT_AC=$(awk -F':' '{print $2}' <<< "${PROJECT_XML/.xml/}")
+PROJECT_AC=$(awk -F'.' '(NF==4) {print $3}' <<< "${PROJECT_XML}")
 
 # Checks if the project file has an accession number
 if [[ -z "${PROJECT_AC}" ]] ; then
@@ -118,7 +120,7 @@ if [[ ! -z "${ERRORS}" ]] ; then
     receipt_info_messages "$receipt" 1>&2
     echo "================================================" 1>&2
 
-    echo "${receipt}" > "${PROJECT_DIR}/project:error.receipt.xml"
+    echo "${receipt}" > "${PROJECT_DIR}/project.${PROJECT_NAME}.error.receipt.xml"
 
     exit 1
 fi
@@ -132,13 +134,13 @@ echo "Project got Accession number : ${RETURN_AC}" 1>&2
 
 # Upload the serveur version of the project file
 curl -u "$LOGIN:$PASSWD" \
-     "${SERVER}/projects/${RETURN_AC}" > "${PROJECT_DIR}/project_tmp_$$.xml"
+     "${SERVER}/projects/${RETURN_AC}" > "${PROJECT_DIR}/project.${PROJECT_NAME}_$$.xml.tmp"
 
 rm -f "${PROJECT_DIR}/${PROJECT_XML}"
-mv "${PROJECT_DIR}/project_tmp_$$.xml" \
-   "${PROJECT_DIR}/project:${RETURN_AC}.xml"
+mv "${PROJECT_DIR}/project.${PROJECT_NAME}_$$.xml.tmp" \
+   "${PROJECT_DIR}/project.${PROJECT_NAME}.${RETURN_AC}.xml"
 
-echo "${receipt}" > "${PROJECT_DIR}/project:${RETURN_AC}.receipt.xml"
+echo "${receipt}" > "${PROJECT_DIR}/project.${PROJECT_NAME}.${RETURN_AC}.receipt.xml"
 
 
 #
@@ -147,16 +149,22 @@ echo "${receipt}" > "${PROJECT_DIR}/project:${RETURN_AC}.receipt.xml"
 # project
 #
 
-UMBRELLA_XML=$(basename $(ls -1 ${DATA_DIR}/common/umbrella*.xml \
+UMBRELLA_XML=$(basename $(ls -1 ${DATA_DIR}/common/umbrella.${UMBRELLA_NAME}*.xml \
                              | grep -v '\.receipt\.xml$'))
-UMBRELLA_AC=$(awk -F':' '{print $2}' <<< "${UMBRELLA_XML/.xml/}")
+UMBRELLA_AC=$(awk -F'\.' '(NF==4) {print $3}' <<< "${UMBRELLA_XML}")
+
+echo "Using umbrella XML file :  ${UMBRELLA_XML}"  1>&2
 
 if [[ -z "${UMBRELLA_AC}" ]] ; then
     echo "This umbrella project has no Accession Number" 1>&2
-    echo "It is submitted as a new project" 1>&2
+    echo "Don't forget to submit it as a new project" 1>&2
 else
     echo "This umbrella project has Accession Number : ${UMBRELLA_AC}" 1>&2
 fi 
+
+#
+# Adding the link to the new project in the umbrella
+#
 
 if xmllint --xpath "//PROJECT/RELATED_PROJECTS" \
            "${DATA_DIR}/common/${UMBRELLA_XML}" > /dev/null ; then 
@@ -179,9 +187,9 @@ if xmllint --xpath "//PROJECT/RELATED_PROJECTS" \
         sed "s@<RELATED_PROJECTS>@<RELATED_PROJECTS>${XML_PATCH}@" \
             "${DATA_DIR}/common/${UMBRELLA_XML}" \
             | xmllint --format - \
-            > "${DATA_DIR}/common/umbrella_tmp_$$.xml"
+            > "${DATA_DIR}/common/umbrella.${UMBRELLA_NAME}_$$.xml.tmp"
 
-        mv "${DATA_DIR}/common/umbrella_tmp_$$.xml" \
+        mv "${DATA_DIR}/common/umbrella.${UMBRELLA_NAME}_$$.xml.tmp"\
         "${DATA_DIR}/common/${UMBRELLA_XML}"
 
     fi
@@ -200,11 +208,11 @@ else
     sed "s@<UMBRELLA_PROJECT/>@<UMBRELLA_PROJECT/>${XML_PATCH}@" \
         "${DATA_DIR}/common/${UMBRELLA_XML}" \
         | xmllint --format - \
-        > "${DATA_DIR}/common/umbrella_tmp_$$.xml"
+        > "${DATA_DIR}/common/umbrella.${UMBRELLA_NAME}_$$.xml.tmp"
 
-    mv "${DATA_DIR}/common/umbrella_tmp_$$.xml" \
+    mv "${DATA_DIR}/common/umbrella.${UMBRELLA_NAME}_$$.xml.tmp" \
        "${DATA_DIR}/common/${UMBRELLA_XML}"
 fi
 
 echo "You must now run an update of the umbrella project" 1>&2
-echo "Using command : submit_umbrella.sh" 1>&2
+echo "Using command : submit_umbrella.sh ${UMBRELLA_NAME}" 1>&2

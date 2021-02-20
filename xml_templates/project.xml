@@ -5,5 +5,13 @@
       <SUBMISSION_PROJECT>
          <SEQUENCING_PROJECT/>
       </SUBMISSION_PROJECT>
+   <PROJECT_LINKS>
+      <PROJECT_LINK>
+         <XREF_LINK>
+            <DB>PUBMED</DB>
+            <ID>32244605</ID> 
+         </XREF_LINK>
+      </PROJECT_LINK>
+   </PROJECT_LINKS>
    </PROJECT>
 </PROJECT_SET>
