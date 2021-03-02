@@ -61,13 +61,13 @@ This is a test metadata file that contains the data from 10 samples. It contains
 
 1. The sample batch.
 2. The Tromso herbarium sample code.
-3. The BOLD sample code. Note: the same as the herbarium code with a "_sg" suffix.
+3. The BOLD accession code.
 4. Species.
 5. Family.
 6. The NCBI taxonID.
 7. An alternate NCBI taxonID to species or genus level if the requested ID in column 6 is not active.
 8. Note explaining wich alternate NCBI taxonID was used.
-9. The sample collection date in dd/mm/yyyy format.
+9. The sample collection date in yyyy-mm-dd format.
 10. The collection month.
 11. The sample collector in "lastname, firstname" format. Multiple collectors are separated by ";".
 12. Country
@@ -85,7 +85,15 @@ This is a test metadata file that contains the data from 10 samples. It contains
 24. Assembled nrDNA length. Not available for all samples.
 25. Number of nrDNA contigs. Not available for all samples.
 26. Chloroplast nrDNA. Not available for all samples.
+27. Indication if a potential fix is required.
+28. Comment regarding the fix.
 
 
+### `Herbarium_sequencing_metadata_clean.csv`
+
+This file contains 1481 samples that are ready for uploading. The format is the same as the `TestMetadata.csv` file. Note: 107 samples have a NCBI TaxonID assigned that is not active, but should become active upon data submission. These samples are flagged as "Requested taxonID not active."
 
 
+### `Herbarium_sequencing_metadata_requiresfix.csv`
+
+This file contains 51 samples that are not ready for uploading. The format is the same as the `TestMetadata.csv` file. 15 samples have the NCBI TaxonID from a synonym, but are not yet recognized by NCBI. 36 samples require a new NCBI TaxonID. The required fix and comment are listed in the final two columns.
