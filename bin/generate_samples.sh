@@ -37,7 +37,8 @@ THIS_DIR="$(dirname ${BASH_SOURCE[0]})"
 PROJECT_NAME=$1
 
 SAMPLE_TEMPLATE="${TEMPLATE_DIR}/sample.xml"
-SAMPLE_DATA="${CSV_DIR}/TestMetadata.csv"
+SAMPLE_DATA="${CSV_DIR}/Herbarium_sequencing_metadata_clean.csv"
+#SAMPLE_DATA="${CSV_DIR}/test.csv"
 
 
 # The XSD file correponding to a project
@@ -68,7 +69,7 @@ if [[ -z "${PROJECT_AC}" ]] ; then
     echo "Do not forget to submit it as a new project" 1>&2
 else
     echo "The ${PROJECT_NAME} project has Accession Number : ${PROJECT_AC}" 1>&2
-fi 
+fi
 
 # Build the xml sample files
 
@@ -81,22 +82,32 @@ for filename in $(${LIB_DIR}/process_template.awk -v ENTRY="${PROJECT_NAME}" \
                                          print filename}     \
                                                              \
                            ($1!="<!--") {print $0 > filename}\
-                          ') ; do 
-   
+                          ') ; do
+
    lat=$(xmllint --xpath '//SAMPLE_ATTRIBUTE/TAG[text()="geographic location (latitude)"]/../VALUE/text()' \
          "${filename}")
    lon=$(xmllint --xpath '//SAMPLE_ATTRIBUTE/TAG[text()="geographic location (longitude)"]/../VALUE/text()' \
          "${filename}")
    country=$(${LIB_DIR}/geocoding_country.sh $lat $lon)
 
-    if [[ ! -z "$country" ]] ; then 
+    # If the country is United States, replace it with the ENA accepted country USA.
+    if [[ "$country" == "United States" ]] ; then
+	country="USA"
+    # If the country is Norway, and the latitude is higher than 74 (74 was selected to exclude
+    # the mainland, but include bjornoya, hopen and the main svalbard archipelago), replace
+    # the country with the ENA accepted location Svalbard.
+    elif [[ "$country" == "Norway" ]] && [[ $lat > 74 ]] ; then
+	country="Svalbard"
+    fi
+
+    if [[ ! -z "$country" ]] ; then
         awk -v country="$country" \
             '{gsub("@@Sampling_country@@",country,$0); print $0}' \
             "${filename}" \
             > "${filename}_$$.tmp"
         mv "${filename}_$$.tmp" "${filename}"
     fi
-    
+
    echo "$filename ($lat,$lon) is in $country" 1>&2
 done
 
