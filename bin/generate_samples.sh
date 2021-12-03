@@ -13,7 +13,7 @@
 #
 # Example:
 #
-# bin/generate_project.sh batch01
+# bin/generate_samples.sh batch01
 #
 ##################################
 
@@ -34,10 +34,12 @@ THIS_DIR="$(dirname ${BASH_SOURCE[0]})"
 #
 #########################################
 
+export LANG=C
+
 PROJECT_NAME=$1
 
 SAMPLE_TEMPLATE="${TEMPLATE_DIR}/sample.xml"
-SAMPLE_DATA="${CSV_DIR}/Herbarium_sequencing_metadata_clean.csv"
+SAMPLE_DATA="${CSV_DIR}/libraries_orthoskim_PhyloAlps_FINAL.csv"
 #SAMPLE_DATA="${CSV_DIR}/test.csv"
 
 
@@ -84,11 +86,32 @@ for filename in $(${LIB_DIR}/process_template.awk -v ENTRY="${PROJECT_NAME}" \
                            ($1!="<!--") {print $0 > filename}\
                           ') ; do
 
-   lat=$(xmllint --xpath '//SAMPLE_ATTRIBUTE/TAG[text()="geographic location (latitude)"]/../VALUE/text()' \
+    # Check for previous version of the sample file with an accession
+    AC=$(awk -F'\.' '{print $3}' <<< $(echo ${filename/.xml/.*.xml}))
+
+    if [[ "$AC" != '*' ]] ; then
+        SAMPLE=$(awk -F'\.' '{print $2}' <<< $(echo ${filename}))
+        echo "Sample $SAMPLE already submitted with AC : $AC"  1>&2
+
+        awk -v accession="$AC" \
+            '{gsub("<SAMPLE alias=","<SAMPLE accession=\""accession"\" alias=",$0); print $0}' \
+            "${filename}" \
+            > "${filename}_$$.tmp"
+        mv "${filename}_$$.tmp" "${filename}"
+
+    else
+        echo "Sample $SAMPLE was never submitted"  1>&2
+    fi
+
+    lat=$(xmllint --xpath '//SAMPLE_ATTRIBUTE/TAG[text()="geographic location (latitude)"]/../VALUE/text()' \
          "${filename}")
-   lon=$(xmllint --xpath '//SAMPLE_ATTRIBUTE/TAG[text()="geographic location (longitude)"]/../VALUE/text()' \
+    lon=$(xmllint --xpath '//SAMPLE_ATTRIBUTE/TAG[text()="geographic location (longitude)"]/../VALUE/text()' \
          "${filename}")
-   country=$(${LIB_DIR}/geocoding_country.sh $lat $lon)
+    country=$(${LIB_DIR}/geocoding_country.sh $lat $lon)
+
+    if [[ -z "$country" ]] ; then
+        country="not provided"
+    fi
 
     # If the country is United States, replace it with the ENA accepted country USA.
     if [[ "$country" == "United States" ]] ; then
@@ -102,7 +125,7 @@ for filename in $(${LIB_DIR}/process_template.awk -v ENTRY="${PROJECT_NAME}" \
 
     if [[ ! -z "$country" ]] ; then
         awk -v country="$country" \
-            '{gsub("@@Sampling_country@@",country,$0); print $0}' \
+            '{gsub("%%Sampling_country%%",country,$0); print $0}' \
             "${filename}" \
             > "${filename}_$$.tmp"
         mv "${filename}_$$.tmp" "${filename}"

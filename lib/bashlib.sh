@@ -76,6 +76,13 @@ receipt_project_accession() {
       | sed 's/^ *//' | sed 's/ *$//'
 }
 
+receipt_sample_accession() {
+   xmllint --noblanks --xpath '/RECEIPT/SAMPLE/@accession' - 2>/dev/null <<< $* \
+      | sed 's/accession=//' \
+      | sed 's/"//g' \
+      | sed 's/^ *//' | sed 's/ *$//'
+}
+
 
 
 
@@ -88,4 +95,4 @@ CSV_DIR="${DATA_DIR}/csv"
 XSD_DIR="${LIB_DIR}/ena_xsd"
 
 
-UMBRELLA="PhyloNorway"
+UMBRELLA="PhyloAlps"

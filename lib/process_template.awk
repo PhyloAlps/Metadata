@@ -164,8 +164,30 @@ BEGIN {RS="\0"; FIRST=0}
         printf "ERROR: %s (%d/%d) -> %s\n", csverr, ncol, num_fields, $0; 
     } else {
         for (i=0; i<ncol; i++) {
-            pattern="@@" HEADER[i] "@@";
-            gsub(pattern,csv[i],result);
+            pattern="%%" HEADER[i] "%%";
+            value = csv[i]
+
+            if (value ~ /&/) {
+                print "@@@> "value > "/dev/stderr"
+                gsub(/&/,"\\\\\\&#38;",value)
+                print "+++> "value > "/dev/stderr"
+            }
+
+            if (FORMAT_VALUE[HEADER[i]])
+                format = FORMAT_VALUE[HEADER[i]]
+            else
+                format = "%s"
+
+            if (value != "" && value != "NA")
+                value = sprintf(format,value)
+
+            if (value != "" && value != "NA" && PREFIX_VALUE[HEADER[i]])
+                value = PREFIX_VALUE[HEADER[i]] value
+
+            if (value == "NA" && NA_VALUE[HEADER[i]])
+                value = NA_VALUE[HEADER[i]]
+
+            gsub(pattern,value,result);
         }
         print result;
     }
@@ -174,6 +196,50 @@ BEGIN {RS="\0"; FIRST=0}
 # The rule which is reading the first file 
 (FIRST==0){
         TEMPLATE=$0;
+        NA_VALUE[""]="NA"
+        PREFIX_VALUE[""]=""
+        FORMAT_VALUE[""]=""
+
+        match(TEMPLATE,/@@[^@]+@@/)
+        while(RLENGTH > 0) {
+            oritag = substr(TEMPLATE,RSTART,RLENGTH)
+            modtag = oritag
+            gsub(/(@@|\?\?|\|\||\$\$)/,"@&",modtag)
+            match(modtag,/@@[^@]*@(@@|\?\?|\|\||\$\$)/)
+
+            target = substr(modtag,RSTART + 2,RLENGTH - 5)
+            
+            format = "%s"
+            match(modtag,/\$\$[^@]*@(@@|\?\?|\|\||\$\$)/)
+            if (RLENGTH > 0) 
+                format = substr(modtag,RSTART + 2,RLENGTH - 5)
+            FORMAT_VALUE[target]=format
+
+            navalue = "NA"
+            match(modtag,/\|\|[^@]*@(@@|\?\?|\|\||\$\$)/)
+            if (RLENGTH > 0) {
+                navalue = substr(modtag,RSTART + 2,RLENGTH - 5)
+                NA_VALUE[target]=navalue
+            }
+            
+            prefix = ""
+            match(modtag,/\?\?[^@]*@(@@|\?\?|\|\||\$\$)/)
+            if (RLENGTH > 0) {
+                prefix = substr(modtag,RSTART + 2,RLENGTH - 5)
+                PREFIX_VALUE[target]=prefix
+            }
+            
+            gsub(/\|/,"\\|",oritag)
+            gsub(/\$/,"\\$",oritag)
+            gsub(/\?/,"\\?",oritag)
+
+            new_pattern="%%" target "%%"
+            gsub(oritag,new_pattern,TEMPLATE)
+            printf "%-30s : Format = %-10s, NA value = %10s, prefix = '%s'\n",target,format,navalue,prefix > "/dev/stderr"
+            match(TEMPLATE,/@@[^@]+@@/)
+
+        }
+
         FIRST=1;
         RS="\n";
         nextfile;

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROJECT_SET>
+  <PROJECT accession="PRJEB6626" alias="ena-STUDY-Laboratoire d'Ecologie Alpine (CNRS UMR 5553)-26-06-2014-13:17:32:259-615" center_name="Laboratoire d'Ecologie Alpine (CNRS UMR 5553)">
+    <IDENTIFIERS>
+      <PRIMARY_ID>PRJEB6626</PRIMARY_ID>
+      <SECONDARY_ID>ERP006174</SECONDARY_ID>
+      <SUBMITTER_ID namespace="Laboratoire d'Ecologie Alpine (CNRS UMR 5553)">ena-STUDY-Laboratoire d'Ecologie Alpine (CNRS UMR 5553)-26-06-2014-13:17:32:259-615</SUBMITTER_ID>
+    </IDENTIFIERS>
+    <NAME>PhyloAlps</NAME>
+    <TITLE>Deciphering the evolutionary origins and maintenance of plant diversity in the Alpine Biodiversity Hotspot using next-generation sequencing and high performance computing</TITLE>
+    <DESCRIPTION>We build on an intensive inventory and sampling of nearly all vascular plant species occurring in the Alps, a biodiversity hotspot harbouring 20% of the European flora. From a low coverage shotgun sequencing of genomic DNA, we will assemble for each taxon the whole-chloroplast genome and nuclear ribosomal sequences. This high quality data, generated at an unprecedented scale for the plant kingdom, will be used for plant phylogeny, comparative analyses of organelle genome evolution, new plant barcoding references and ultimately analyses of biodiversity patterns and mechanisms of species coexistence in the face of global changes.</DESCRIPTION>
+    <SUBMISSION_PROJECT>
+      <SEQUENCING_PROJECT>
+        <LOCUS_TAG_PREFIX>BN1098</LOCUS_TAG_PREFIX>
+      </SEQUENCING_PROJECT>
+    </SUBMISSION_PROJECT>
+    <PROJECT_LINKS>
+      <PROJECT_LINK>
+        <XREF_LINK>
+          <DB>ENA-SUBMISSION</DB>
+          <ID>ERA322003</ID>
+        </XREF_LINK>
+      </PROJECT_LINK>
+      <PROJECT_LINK>
+        <XREF_LINK>
+          <DB>ENA-FASTQ-FILES</DB>
+          <ID><![CDATA[https://www.ebi.ac.uk/ena/portal/api/filereport?accession=PRJEB6626&result=read_run&fields=run_accession,fastq_ftp,fastq_md5,fastq_bytes]]></ID>
+        </XREF_LINK>
+      </PROJECT_LINK>
+      <PROJECT_LINK>
+        <XREF_LINK>
+          <DB>ENA-SUBMITTED-FILES</DB>
+          <ID><![CDATA[https://www.ebi.ac.uk/ena/portal/api/filereport?accession=PRJEB6626&result=read_run&fields=run_accession,submitted_ftp,submitted_md5,submitted_bytes,submitted_format]]></ID>
+        </XREF_LINK>
+      </PROJECT_LINK>
+    </PROJECT_LINKS>
+    <PROJECT_ATTRIBUTES>
+      <PROJECT_ATTRIBUTE>
+        <TAG>ENA-FIRST-PUBLIC</TAG>
+        <VALUE>2019-06-25</VALUE>
+      </PROJECT_ATTRIBUTE>
+      <PROJECT_ATTRIBUTE>
+        <TAG>ENA-LAST-UPDATE</TAG>
+        <VALUE>2016-05-20</VALUE>
+      </PROJECT_ATTRIBUTE>
+    </PROJECT_ATTRIBUTES>
+  </PROJECT>
+</PROJECT_SET>

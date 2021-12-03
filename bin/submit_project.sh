@@ -9,7 +9,7 @@
 #
 # Example:
 #
-# bin/submit_project.sh PhyloNorway batch01
+# bin/submit_project.sh PhyloAlps batch01
 #
 ##################################
 
@@ -39,21 +39,23 @@ PROD_SERVER="https://www.ebi.ac.uk/ena/submit/drop-box"
 # -p or --production option
 #
 POSITIONAL=()
+PRODUCTION="NO"
+PUBLISH="NO"
 while [[ $# -gt 0 ]]
 do
 key="$1"
 
-PRODUCTION="NO"
-
 case $key in
-    -p|--production)
-    PRODUCTION="YES"
-    shift # past argument
-    ;;
-    *)    # unknown option
-    POSITIONAL+=("$1") # save it in an array for later
-    shift # past argument
-    ;;
+    -p|--production) PRODUCTION="YES"
+                     shift # past argument
+                     ;;
+    -u|--make-puublic) PUBLISH="YES"
+                     shift # past argument
+                     ;;
+    # unknown option
+    *) POSITIONAL+=("$1") # save it in an array for later
+       shift # past argument
+       ;;
 esac
 done
 set -- "${POSITIONAL[@]}" # restore positional parameters
@@ -98,10 +100,19 @@ if [[ -z "${PROJECT_AC}" ]] ; then
     ACTION="${TEMPLATE_DIR}/submission.xml"
 else
     echo "This project project has Accession Number : ${PROJECT_AC}" 1>&2
-    echo "We are submitting an update" 1>&2
-
-    ACTION="${TEMPLATE_DIR}/update.xml"
+    if [[ "$PUBLISH" == "YES" ]] ; then
+        echo "Makes the project public" 1>&2
+        ACTION="$$.make_public.xml"
+        sed "s/@@ACCESSION@@/${PROJECT_AC}/" \
+            "${TEMPLATE_DIR}/make_public.xml" \
+            > "$ACTION"
+    else
+        echo "Submitting as an update" 1>&2
+        ACTION="${TEMPLATE_DIR}/update.xml"
+    fi
 fi 
+
+echo "Umbrella $UMBRELLA Submitting account : $LOGIN"  1>&2
 
 # Submit the new project of the update 
 receipt=$(curl -u $LOGIN:$PASSWD \
@@ -127,21 +138,28 @@ fi
 
 echo "Submission process was successful" 1>&2
 
-# Extracts the Accession number from the receipt
-RETURN_AC=$(receipt_project_accession "$receipt")
+if [[ "$PUBLISH" == "NO" ]] ; then
 
-echo "Project got Accession number : ${RETURN_AC}" 1>&2
+    # Extracts the Accession number from the receipt
+    RETURN_AC=$(receipt_project_accession "$receipt")
 
-# Upload the serveur version of the project file
-curl -u "$LOGIN:$PASSWD" \
-     "${SERVER}/projects/${RETURN_AC}" > "${PROJECT_DIR}/project.${PROJECT_NAME}_$$.xml.tmp"
+    echo "Project got Accession number : ${RETURN_AC}" 1>&2
+else
+    if [[ "${PROJECT_AC}" != "*" ]] ; then
+        RETURN_AC="${PROJECT_AC}"
+    fi
+fi
 
-rm -f "${PROJECT_DIR}/${PROJECT_XML}"
-mv "${PROJECT_DIR}/project.${PROJECT_NAME}_$$.xml.tmp" \
-   "${PROJECT_DIR}/project.${PROJECT_NAME}.${RETURN_AC}.xml"
+if [[ ! -z "${RETURN_AC}" ]]
+    # Upload the serveur version of the project file
+    curl -u "$LOGIN:$PASSWD" \
+        "${SERVER}/projects/${RETURN_AC}" > "${PROJECT_DIR}/project.${PROJECT_NAME}_$$.xml.tmp"
 
-echo "${receipt}" > "${PROJECT_DIR}/project.${PROJECT_NAME}.${RETURN_AC}.receipt.xml"
+    mv "${PROJECT_DIR}/project.${PROJECT_NAME}_$$.xml.tmp" \
+    "${PROJECT_DIR}/project.${PROJECT_NAME}.${RETURN_AC}.xml"
 
+    echo "${receipt}" > "${PROJECT_DIR}/project.${PROJECT_NAME}.${RETURN_AC}.receipt.xml"
+fi
 
 #
 # We now need for editing the umbrella project XML
