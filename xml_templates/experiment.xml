@@ -1,0 +1,33 @@
+<!-- experiment.@@DB_ID@@.xml -->
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<EXPERIMENT_SET>
+   <EXPERIMENT alias="exp_@@ALIAS@@">
+       <TITLE>@@DB_ID@@: @@Scientific_Name@@ Genome skimming</TITLE>
+       <STUDY_REF accession="@@STUDY_ENA_AC@@"/>
+       <DESIGN>
+           <DESIGN_DESCRIPTION/>
+           <SAMPLE_DESCRIPTOR accession="@@SAMPLE_ENA_AC@@"/>
+           <LIBRARY_DESCRIPTOR>
+               <LIBRARY_NAME/>
+               <LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+               <LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+               <LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+               <LIBRARY_LAYOUT>
+                   @@LIBRARY_LAYOUT@@
+               </LIBRARY_LAYOUT>
+               <LIBRARY_CONSTRUCTION_PROTOCOL>none provided</LIBRARY_CONSTRUCTION_PROTOCOL>
+           </LIBRARY_DESCRIPTOR>
+       </DESIGN>
+       <PLATFORM>
+           <ILLUMINA>
+               <INSTRUMENT_MODEL>@@Sequencing_organization@@</INSTRUMENT_MODEL>
+           </ILLUMINA>
+       </PLATFORM>
+       <EXPERIMENT_ATTRIBUTES>
+           <EXPERIMENT_ATTRIBUTE>
+               <TAG>library preparation date</TAG>
+               <VALUE>@@Sequencing_date@@</VALUE>
+           </EXPERIMENT_ATTRIBUTE>
+       </EXPERIMENT_ATTRIBUTES>
+   </EXPERIMENT>
+</EXPERIMENT_SET>

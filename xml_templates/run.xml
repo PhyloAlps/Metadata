@@ -1,0 +1,14 @@
+<!-- run.@@DB_ID@@.xml -->
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RUN_SET>
+  <RUN alias="run_@@ALIAS@@" run_date="@@Sequencing_date@@"  run_center="@@Sequencing_organization@@" >
+    <EXPERIMENT_REF refname="exp_@@ALIAS@@"/>
+    <DATA_BLOCK>
+      <FILES>
+        <FILE filename="@@ENA_FILE_FWD@@" filetype="fastq" checksum_method="MD5" checksum="@@MD5_FWD@@" />
+        <FILE filename="@@ENA_FILE_REV@@" filetype="fastq" checksum_method="MD5" checksum="@@MD5_REV@@" />
+      </FILES>
+    </DATA_BLOCK>
+  </RUN>
+</RUN_SET>
+

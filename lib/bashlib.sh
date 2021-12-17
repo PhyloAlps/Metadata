@@ -83,6 +83,19 @@ receipt_sample_accession() {
       | sed 's/^ *//' | sed 's/ *$//'
 }
 
+receipt_experiment_accession() {
+   xmllint --noblanks --xpath '/RECEIPT/EXPERIMENT/@accession' - 2>/dev/null <<< $* \
+      | sed 's/accession=//' \
+      | sed 's/"//g' \
+      | sed 's/^ *//' | sed 's/ *$//'
+}
+
+receipt_run_accession() {
+   xmllint --noblanks --xpath '/RECEIPT/RUN/@accession' - 2>/dev/null <<< $* \
+      | sed 's/accession=//' \
+      | sed 's/"//g' \
+      | sed 's/^ *//' | sed 's/ *$//'
+}
 
 
 
