@@ -1,0 +1,27 @@
+<RUN_SET>
+  <RUN accession="ERR7756300" alias="run_140105_I244_FCC3J4BACXX_L5_RSZAXPI000939-53"
+        center_name="Universite Grenoble Alpes"
+        run_center="BGI">
+      <IDENTIFIERS>
+         <PRIMARY_ID>ERR7756300</PRIMARY_ID>
+         <SUBMITTER_ID namespace="Universite Grenoble Alpes">run_140105_I244_FCC3J4BACXX_L5_RSZAXPI000939-53</SUBMITTER_ID>
+      </IDENTIFIERS>
+      <EXPERIMENT_REF accession="ERX7324461">
+         <IDENTIFIERS>
+            <PRIMARY_ID>ERX7324461</PRIMARY_ID>
+         </IDENTIFIERS>
+      </EXPERIMENT_REF>
+      <DATA_BLOCK>
+         <FILES>
+            <FILE checksum="2530fc34c9c8320e4413ccc187abd8e0" checksum_method="MD5"
+                  filename="run/ERR775/ERR7756300/140105_I244_FCC3J4BACXX_L5_RSZAXPI000939-53_1.fq.gz"
+                  filetype="fastq"
+                  quality_scoring_system="phred"/>
+            <FILE checksum="e68049f11b019a2151043ecc892ad4a3" checksum_method="MD5"
+                  filename="run/ERR775/ERR7756300/140105_I244_FCC3J4BACXX_L5_RSZAXPI000939-53_2.fq.gz"
+                  filetype="fastq"
+                  quality_scoring_system="phred"/>
+         </FILES>
+      </DATA_BLOCK>
+  </RUN>
+</RUN_SET>

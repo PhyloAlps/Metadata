@@ -1,0 +1,79 @@
+<SAMPLE_SET>
+  <SAMPLE accession="ERS8752195" alias="PHA007610"
+           center_name="Universite Grenoble Alpes">
+      <IDENTIFIERS>
+         <PRIMARY_ID>ERS8752195</PRIMARY_ID>
+         <SUBMITTER_ID namespace="Universite Grenoble Alpes">PHA007610</SUBMITTER_ID>
+      </IDENTIFIERS>
+      <TITLE>PHA007610 PhyloAlps sample of Rhododendron luteum Sweet</TITLE>
+      <SAMPLE_NAME>
+         <TAXON_ID>49467</TAXON_ID>
+         <SCIENTIFIC_NAME>Rhododendron luteum</SCIENTIFIC_NAME>
+         <COMMON_NAME/>
+      </SAMPLE_NAME>
+      <SAMPLE_ATTRIBUTES>
+         <SAMPLE_ATTRIBUTE>
+            <TAG>investigation type</TAG>
+            <VALUE>genome skimming</VALUE>
+         </SAMPLE_ATTRIBUTE>
+         <SAMPLE_ATTRIBUTE>
+            <TAG>collection date</TAG>
+            <VALUE>2011-05-03</VALUE>
+         </SAMPLE_ATTRIBUTE>
+         <SAMPLE_ATTRIBUTE>
+            <TAG>geographic location (country and/or sea)</TAG>
+            <VALUE>Austria</VALUE>
+         </SAMPLE_ATTRIBUTE>
+         <SAMPLE_ATTRIBUTE>
+            <TAG>geographic location (latitude)</TAG>
+            <VALUE>48.19347000</VALUE>
+            <UNITS>DD</UNITS>
+         </SAMPLE_ATTRIBUTE>
+         <SAMPLE_ATTRIBUTE>
+            <TAG>geographic location (longitude)</TAG>
+            <VALUE>16.38410000</VALUE>
+            <UNITS>DD</UNITS>
+         </SAMPLE_ATTRIBUTE>
+         <SAMPLE_ATTRIBUTE>
+            <TAG>environment (biome)</TAG>
+            <VALUE>terrestrial biome</VALUE>
+         </SAMPLE_ATTRIBUTE>
+         <SAMPLE_ATTRIBUTE>
+            <TAG>environment (feature)</TAG>
+            <VALUE>natural environment</VALUE>
+         </SAMPLE_ATTRIBUTE>
+         <SAMPLE_ATTRIBUTE>
+            <TAG>environment (material)</TAG>
+            <VALUE>plant matter</VALUE>
+         </SAMPLE_ATTRIBUTE>
+         <SAMPLE_ATTRIBUTE>
+            <TAG>plant structure</TAG>
+            <VALUE>leaf (PO_0025034)</VALUE>
+         </SAMPLE_ATTRIBUTE>
+         <SAMPLE_ATTRIBUTE>
+            <TAG>plant developmental stage</TAG>
+            <VALUE>living plant material</VALUE>
+         </SAMPLE_ATTRIBUTE>
+         <SAMPLE_ATTRIBUTE>
+            <TAG>plant growth medium</TAG>
+            <VALUE>soil</VALUE>
+         </SAMPLE_ATTRIBUTE>
+         <SAMPLE_ATTRIBUTE>
+            <TAG>isolation and growth condition</TAG>
+            <VALUE>in natura</VALUE>
+         </SAMPLE_ATTRIBUTE>
+         <SAMPLE_ATTRIBUTE>
+            <TAG>collected_by</TAG>
+            <VALUE>Sonia Latzin</VALUE>
+         </SAMPLE_ATTRIBUTE>
+         <SAMPLE_ATTRIBUTE>
+            <TAG>source material identifiers</TAG>
+            <VALUE>PhyloAlps sample PHA007610</VALUE>
+         </SAMPLE_ATTRIBUTE>
+         <SAMPLE_ATTRIBUTE>
+            <TAG>ENA-CHECKLIST</TAG>
+            <VALUE>ERC000037</VALUE>
+         </SAMPLE_ATTRIBUTE>
+      </SAMPLE_ATTRIBUTES>
+  </SAMPLE>
+</SAMPLE_SET>

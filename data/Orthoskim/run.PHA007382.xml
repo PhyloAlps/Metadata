@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RUN_SET>
+  <RUN alias="run_131227_I263_FCC368BACXX_L5_RSZAXPI000819-89"  run_center="BGI" >
+    <EXPERIMENT_REF refname="exp_131227_I263_FCC368BACXX_L5_RSZAXPI000819-89"/>
+    <DATA_BLOCK>
+      <FILES>
+        <FILE filename="131227_I263_FCC368BACXX_L5_RSZAXPI000819-89_1.fq.gz" filetype="fastq" checksum_method="MD5" checksum="46fd4915ba55eabd5b6686eb1692ca1e" />
+        <FILE filename="131227_I263_FCC368BACXX_L5_RSZAXPI000819-89_2.fq.gz" filetype="fastq" checksum_method="MD5" checksum="c6a1339546baad8780518ea03fa11a7a" />
+      </FILES>
+    </DATA_BLOCK>
+  </RUN>
+</RUN_SET>

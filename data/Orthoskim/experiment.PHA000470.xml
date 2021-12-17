@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<EXPERIMENT_SET>
+   <EXPERIMENT alias="exp_140128_I249_FCC3R3PACXX_L8_RSZAXPI001349-74">
+       <TITLE>PHA000470: Andromeda polifolia L. Genome skimming</TITLE>
+       <STUDY_REF accession="ERP133303"/>
+       <DESIGN>
+           <DESIGN_DESCRIPTION/>
+           <SAMPLE_DESCRIPTOR accession="ERS8751927"/>
+           <LIBRARY_DESCRIPTOR>
+               <LIBRARY_NAME/>
+               <LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+               <LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+               <LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+               <LIBRARY_LAYOUT>
+                   <PAIRED NOMINAL_LENGTH="191" NOMINAL_SDEV="14"/>
+               </LIBRARY_LAYOUT>
+               <LIBRARY_CONSTRUCTION_PROTOCOL>none provided</LIBRARY_CONSTRUCTION_PROTOCOL>
+           </LIBRARY_DESCRIPTOR>
+       </DESIGN>
+       <PLATFORM>
+           <ILLUMINA>
+               <INSTRUMENT_MODEL>Illumina HiSeq 2000</INSTRUMENT_MODEL>
+           </ILLUMINA>
+       </PLATFORM>
+       <EXPERIMENT_ATTRIBUTES>
+           <EXPERIMENT_ATTRIBUTE>
+               <TAG>library preparation date</TAG>
+               <VALUE>2013-03-18</VALUE>
+           </EXPERIMENT_ATTRIBUTE>
+       </EXPERIMENT_ATTRIBUTES>
+   </EXPERIMENT>
+</EXPERIMENT_SET>

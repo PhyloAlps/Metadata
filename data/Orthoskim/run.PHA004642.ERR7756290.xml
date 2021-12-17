@@ -1,0 +1,27 @@
+<RUN_SET>
+  <RUN accession="ERR7756290" alias="run_180307_SND393_A_L001_GWM-1240"
+        center_name="Universite Grenoble Alpes"
+        run_center="Fasteris">
+      <IDENTIFIERS>
+         <PRIMARY_ID>ERR7756290</PRIMARY_ID>
+         <SUBMITTER_ID namespace="Universite Grenoble Alpes">run_180307_SND393_A_L001_GWM-1240</SUBMITTER_ID>
+      </IDENTIFIERS>
+      <EXPERIMENT_REF accession="ERX7324451">
+         <IDENTIFIERS>
+            <PRIMARY_ID>ERX7324451</PRIMARY_ID>
+         </IDENTIFIERS>
+      </EXPERIMENT_REF>
+      <DATA_BLOCK>
+         <FILES>
+            <FILE checksum="0d55406f055bd510110079894568f92a" checksum_method="MD5"
+                  filename="run/ERR775/ERR7756290/180307_SND393_A_L001_GWM-1240_R1.fastq.gz"
+                  filetype="fastq"
+                  quality_scoring_system="phred"/>
+            <FILE checksum="7090281befdaccbebd734e0857ab9e85" checksum_method="MD5"
+                  filename="run/ERR775/ERR7756290/180307_SND393_A_L001_GWM-1240_R2.fastq.gz"
+                  filetype="fastq"
+                  quality_scoring_system="phred"/>
+         </FILES>
+      </DATA_BLOCK>
+  </RUN>
+</RUN_SET>

@@ -1,0 +1,75 @@
+<SAMPLE_SET>
+  <SAMPLE accession="ERS8752260" alias="PHP010511"
+           center_name="Universite Grenoble Alpes">
+      <IDENTIFIERS>
+         <PRIMARY_ID>ERS8752260</PRIMARY_ID>
+         <SUBMITTER_ID namespace="Universite Grenoble Alpes">PHP010511</SUBMITTER_ID>
+      </IDENTIFIERS>
+      <TITLE>PHP010511 PhyloAlps sample of Daboecia cantabrica (Huds.) K. Koch</TITLE>
+      <SAMPLE_NAME>
+         <TAXON_ID>13479</TAXON_ID>
+         <SCIENTIFIC_NAME>Daboecia cantabrica</SCIENTIFIC_NAME>
+         <COMMON_NAME/>
+      </SAMPLE_NAME>
+      <SAMPLE_ATTRIBUTES>
+         <SAMPLE_ATTRIBUTE>
+            <TAG>investigation type</TAG>
+            <VALUE>genome skimming</VALUE>
+         </SAMPLE_ATTRIBUTE>
+         <SAMPLE_ATTRIBUTE>
+            <TAG>collection date</TAG>
+            <VALUE>2016-10-31</VALUE>
+         </SAMPLE_ATTRIBUTE>
+         <SAMPLE_ATTRIBUTE>
+            <TAG>geographic location (country and/or sea)</TAG>
+            <VALUE>not provided</VALUE>
+         </SAMPLE_ATTRIBUTE>
+         <SAMPLE_ATTRIBUTE>
+            <TAG>geographic location (latitude)</TAG>
+            <VALUE>not provided</VALUE>
+            <UNITS>DD</UNITS>
+         </SAMPLE_ATTRIBUTE>
+         <SAMPLE_ATTRIBUTE>
+            <TAG>geographic location (longitude)</TAG>
+            <VALUE>not provided</VALUE>
+            <UNITS>DD</UNITS>
+         </SAMPLE_ATTRIBUTE>
+         <SAMPLE_ATTRIBUTE>
+            <TAG>environment (biome)</TAG>
+            <VALUE>terrestrial biome</VALUE>
+         </SAMPLE_ATTRIBUTE>
+         <SAMPLE_ATTRIBUTE>
+            <TAG>environment (feature)</TAG>
+            <VALUE>natural environment</VALUE>
+         </SAMPLE_ATTRIBUTE>
+         <SAMPLE_ATTRIBUTE>
+            <TAG>environment (material)</TAG>
+            <VALUE>plant matter</VALUE>
+         </SAMPLE_ATTRIBUTE>
+         <SAMPLE_ATTRIBUTE>
+            <TAG>plant structure</TAG>
+            <VALUE>leaf (PO_0025034)</VALUE>
+         </SAMPLE_ATTRIBUTE>
+         <SAMPLE_ATTRIBUTE>
+            <TAG>plant developmental stage</TAG>
+            <VALUE>living plant material</VALUE>
+         </SAMPLE_ATTRIBUTE>
+         <SAMPLE_ATTRIBUTE>
+            <TAG>plant growth medium</TAG>
+            <VALUE>soil</VALUE>
+         </SAMPLE_ATTRIBUTE>
+         <SAMPLE_ATTRIBUTE>
+            <TAG>isolation and growth condition</TAG>
+            <VALUE>in natura</VALUE>
+         </SAMPLE_ATTRIBUTE>
+         <SAMPLE_ATTRIBUTE>
+            <TAG>source material identifiers</TAG>
+            <VALUE>PhyloAlps sample PHP010511</VALUE>
+         </SAMPLE_ATTRIBUTE>
+         <SAMPLE_ATTRIBUTE>
+            <TAG>ENA-CHECKLIST</TAG>
+            <VALUE>ERC000037</VALUE>
+         </SAMPLE_ATTRIBUTE>
+      </SAMPLE_ATTRIBUTES>
+  </SAMPLE>
+</SAMPLE_SET>

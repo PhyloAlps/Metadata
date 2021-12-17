@@ -1,0 +1,45 @@
+<EXPERIMENT_SET>
+  <EXPERIMENT accession="ERX7324456" alias="exp_140122_I232_FCC3J1LACXX_L6_RSZAXPI000961-101"
+               center_name="Universite Grenoble Alpes">
+      <IDENTIFIERS>
+         <PRIMARY_ID>ERX7324456</PRIMARY_ID>
+         <SUBMITTER_ID namespace="Universite Grenoble Alpes">exp_140122_I232_FCC3J1LACXX_L6_RSZAXPI000961-101</SUBMITTER_ID>
+      </IDENTIFIERS>
+      <TITLE>PHA007378: Pyrola media Sw. Genome skimming</TITLE>
+      <STUDY_REF accession="ERP133303">
+         <IDENTIFIERS>
+            <PRIMARY_ID>ERP133303</PRIMARY_ID>
+            <SECONDARY_ID>PRJEB48874</SECONDARY_ID>
+         </IDENTIFIERS>
+      </STUDY_REF>
+      <DESIGN>
+         <DESIGN_DESCRIPTION/>
+         <SAMPLE_DESCRIPTOR accession="ERS8752156">
+            <IDENTIFIERS>
+               <PRIMARY_ID>ERS8752156</PRIMARY_ID>
+            </IDENTIFIERS>
+         </SAMPLE_DESCRIPTOR>
+         <LIBRARY_DESCRIPTOR>
+            <LIBRARY_NAME/>
+            <LIBRARY_STRATEGY>WGS</LIBRARY_STRATEGY>
+            <LIBRARY_SOURCE>GENOMIC</LIBRARY_SOURCE>
+            <LIBRARY_SELECTION>RANDOM</LIBRARY_SELECTION>
+            <LIBRARY_LAYOUT>
+               <PAIRED/>
+            </LIBRARY_LAYOUT>
+            <LIBRARY_CONSTRUCTION_PROTOCOL>none provided</LIBRARY_CONSTRUCTION_PROTOCOL>
+         </LIBRARY_DESCRIPTOR>
+      </DESIGN>
+      <PLATFORM>
+         <ILLUMINA>
+            <INSTRUMENT_MODEL>Illumina HiSeq 2000</INSTRUMENT_MODEL>
+         </ILLUMINA>
+      </PLATFORM>
+      <EXPERIMENT_ATTRIBUTES>
+         <EXPERIMENT_ATTRIBUTE>
+            <TAG>library preparation date</TAG>
+            <VALUE>2013-03-18</VALUE>
+         </EXPERIMENT_ATTRIBUTE>
+      </EXPERIMENT_ATTRIBUTES>
+  </EXPERIMENT>
+</EXPERIMENT_SET>

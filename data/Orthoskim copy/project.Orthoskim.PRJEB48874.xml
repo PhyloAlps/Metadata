@@ -1,0 +1,14 @@
+<PROJECT_SET>
+  <PROJECT accession="PRJEB48874" alias="PhyloAlps-Orthoskim"
+            center_name="Universite Grenoble Alpes">
+      <IDENTIFIERS>
+         <PRIMARY_ID>PRJEB48874</PRIMARY_ID>
+         <SUBMITTER_ID namespace="Universite Grenoble Alpes">PhyloAlps-Orthoskim</SUBMITTER_ID>
+      </IDENTIFIERS>
+      <TITLE>82 genome skims from the Alpine vascular flora</TITLE>
+      <DESCRIPTION>That project includes the genome skims for 82 specimens of vascular plants of the Alpine flora. They belongs 24 genera, and 4 families.</DESCRIPTION>
+      <SUBMISSION_PROJECT>
+         <SEQUENCING_PROJECT/>
+      </SUBMISSION_PROJECT>
+  </PROJECT>
+</PROJECT_SET>

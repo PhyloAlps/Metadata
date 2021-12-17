@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<RUN_SET>
+  <RUN alias="run_180307_SND393_A_L001_GWM-1243"  run_center="Fasteris" >
+    <EXPERIMENT_REF refname="exp_180307_SND393_A_L001_GWM-1243"/>
+    <DATA_BLOCK>
+      <FILES>
+        <FILE filename="180307_SND393_A_L001_GWM-1243_R1.fastq.gz" filetype="fastq" checksum_method="MD5" checksum="d453f68be092e645995f46591362738a" />
+        <FILE filename="180307_SND393_A_L001_GWM-1243_R2.fastq.gz" filetype="fastq" checksum_method="MD5" checksum="84d80f4b7d26b4f02f15841e6fe3316a" />
+      </FILES>
+    </DATA_BLOCK>
+  </RUN>
+</RUN_SET>
