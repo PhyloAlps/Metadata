@@ -49,7 +49,7 @@ case $key in
     -p|--production) PRODUCTION="YES"
                      shift # past argument
                      ;;
-    -u|--make-puublic) PUBLISH="YES"
+    -u|--make-public) PUBLISH="YES"
                      shift # past argument
                      ;;
     # unknown option

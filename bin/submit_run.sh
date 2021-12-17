@@ -2,7 +2,7 @@
 
 ##################################
 #
-# Submit the sample xml files. 
+# Submit the run and experiment xml files. 
 # The default submission is done on the test server. 
 # You have to add the -p option to force submission on the 
 # production server.
@@ -93,22 +93,24 @@ PROJECT_XML=$(basename $(ls -1 ${PROJECT_DIR}/project*.xml  \
                              | grep -v '\.receipt\.xml$'))
 PROJECT_AC=$(awk -F'.' '(NF==4) {print $3}' <<< "${PROJECT_XML}")
 
-echo "DB_ID,SAMPLE_ENA_AC" > ${PROJECT_DIR}/accession_list.tsv
+echo "DB_ID,EXPERIMENT_ENA_AC,RUN_ENA_AC" > ${PROJECT_DIR}/experiment_accession_list.tsv
 
 # go through all sample files and upload them
-for file in $(ls ${PROJECT_DIR}/sample*xml | grep -Ev 'sample\..+\..+\.xml'); do
-	SAMPLE_NAME=$(basename ${file%.*} | sed 's/^sample\.//')
+for file in $(ls ${PROJECT_DIR}/experiment*.xml | grep -Ev 'experiment\..+\..+\.xml'); do
+	SAMPLE_NAME=$(basename ${file%.*} | sed 's/^experiment\.//')
 	echo "Processing sample : $SAMPLE_NAME"
 	echo $file
 
-	# Checks if the sample file has an accession number
-	SAMPLE_AC=$(awk -F'\.' '{print $(NF-1)}' <<< $(echo ${file/.xml/.*.xml}))
-	if [[ "$SAMPLE_AC" != '*' ]] ; then
-		echo "The sample has an Accession Number : ${SAMPLE_AC}" 1>&2
+	runfile=$(sed 's@/experiment\.@/run.@' <<< $file)
+
+	# Checks if the experiment file has an accession number
+	EXPERIMENT_AC=$(awk -F'\.' '{print $(NF-1)}' <<< $(echo ${file/.xml/.*.xml}))
+	if [[ "$EXPERIMENT_AC" != '*' ]] ; then
+		echo "The experiment has an Accession Number : ${EXPERIMENT_AC}" 1>&2
 		if [[ "$PUBLISH" == "YES" ]] ; then
-			echo "Makes the sample public" 1>&2
+			echo "Makes the experiment public" 1>&2
 			ACTION="$$.make_public.xml"
-			sed "s/@@ACCESSION@@/${SAMPLE_AC}/" \
+			sed "s/@@ACCESSION@@/${EXPERIMENT_AC}/" \
 				"${TEMPLATE_DIR}/make_public.xml" \
 				> "$ACTION"
 		else
@@ -116,23 +118,30 @@ for file in $(ls ${PROJECT_DIR}/sample*xml | grep -Ev 'sample\..+\..+\.xml'); do
 			ACTION="${TEMPLATE_DIR}/update.xml"
 		fi
 	else
-		echo "The sample has no Accession Number" 1>&2
-		echo "It will be submitted as a new sample" 1>&2
+		echo "The experiment has no Accession Number" 1>&2
+		echo "It will be submitted as a new experiment" 1>&2
 		ACTION="${TEMPLATE_DIR}/submission.xml"
 	fi
+
+	RUN_AC=$(awk -F'\.' '{print $(NF-1)}' <<< $(echo ${runfile/.xml/.*.xml}))
+	# if [[ "$RUN_AC" != '*' ]] ; then
+
+	# else
+
+	# fi
+
+	echo ${file}
+	echo ${runfile}
 
 	# Submit the sample of the update
 	receipt=$(curl -u $LOGIN:$PASSWD \
         	-F "SUBMISSION=@${ACTION}" \
-	        -F "SAMPLE=@${file}" \
+	        -F "EXPERIMENT=@${file}" \
+	        -F "RUN=@${runfile}" \
         	"${SERVER}/submit")
-
-
 
 	# Look for error in the submission
 	ERRORS=$(receipt_error_messages "$receipt")
-
-	echo $ERRORS
 
 	# If errors occur print them and exit with the code 1
 	if [[ ! -z "${ERRORS}" ]] ; then
@@ -153,25 +162,39 @@ for file in $(ls ${PROJECT_DIR}/sample*xml | grep -Ev 'sample\..+\..+\.xml'); do
 	if [[ "$PUBLISH" == "NO" ]] ; then
 
 		# Extracts the Accession number from the receipt
-		RETURN_AC=$(receipt_sample_accession "$receipt")
+		RETURN_AC=$(receipt_experiment_accession "$receipt")
+		RETURN_RUN_AC=$(receipt_run_accession "$receipt")
 
-		echo "Sample got Accession number : ${RETURN_AC}" 1>&2
+		echo "Experiment got Accession number : ${RETURN_AC}" 1>&2
+		echo "Run got Accession number : ${RETURN_RUN_AC}" 1>&2
 	else
-		if [[ "${SAMPLE_AC}" != "*" ]] ; then
-			RETURN_AC="${SAMPLE_AC}"
+		if [[ "${EPERIMENT_AC}" != "*" ]] ; then
+			RETURN_AC="${EPERIMENT_AC}"
 		fi
+
+		if [[ "${RUN_AC}" != "*" ]] ; then
+			RETURN_AC="${RUN_AC}"
+		fi
+
+
 	fi
 
-	if [[ ! -z "${RETURN_AC}" ]]
+	if [[ ! -z "${RETURN_AC}" ]] ; then
 
 		# Upload the serveur version of the project file
 		curl -u "$LOGIN:$PASSWD" \
-		"${SERVER}/samples/${RETURN_AC}" > "${PROJECT_DIR}/sample.${SAMPLE_NAME}_$$.xml.tmp"
+		"${SERVER}/experiments/${RETURN_AC}" > "${PROJECT_DIR}/experiment.${SAMPLE_NAME}_$$.xml.tmp"
 
-		mv "${PROJECT_DIR}/sample.${SAMPLE_NAME}_$$.xml.tmp" \
-			"${PROJECT_DIR}/sample.${SAMPLE_NAME}.${RETURN_AC}.xml"
+		mv "${PROJECT_DIR}/experiment.${SAMPLE_NAME}_$$.xml.tmp" \
+			"${PROJECT_DIR}/experiment.${SAMPLE_NAME}.${RETURN_AC}.xml"
 
-		echo -e "${SAMPLE_NAME},${RETURN_AC}" >> ${PROJECT_DIR}/accession_list.tsv
+		curl -u "$LOGIN:$PASSWD" \
+		"${SERVER}/runs/${RETURN_RUN_AC}" > "${PROJECT_DIR}/run.${SAMPLE_NAME}_$$.xml.tmp"
+
+		mv "${PROJECT_DIR}/run.${SAMPLE_NAME}_$$.xml.tmp" \
+			"${PROJECT_DIR}/run.${SAMPLE_NAME}.${RETURN_RUN_AC}.xml"
+
+		echo -e "${SAMPLE_NAME},${RETURN_AC},${RETURN_RUN_AC}" >> ${PROJECT_DIR}/experiment_accession_list.tsv
 	fi
 
 	echo "------------------------------------------------------------------" 1>&2
