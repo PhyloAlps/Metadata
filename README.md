@@ -1,6 +1,6 @@
-# The PhyloNorway metadata project
+# The PhyloAlps metadata project
 
-The `PhyloNorway metadata` project is aiming to store every files related to the submission of the PhyloNorway genome skimming project to the EBI<sup>[[1]](#EBI)</sup> ENA<sup>[[2]](#ENA)</sup> database.
+The `PhyloAlps metadata` project is aiming to store every files related to the submission of the PhyloAlps genome skimming project to the EBI<sup>[[1]](#EBI)</sup> ENA<sup>[[2]](#ENA)</sup> database.
 
 ## Directories organisation
 
@@ -8,7 +8,7 @@ The `PhyloNorway metadata` project is aiming to store every files related to the
 ### The `bin` directory
 
 The `bin` directory contains every scripts (mainly bash scripts) needed to submit 
-PhyloNorway data to the ENA database.
+PhyloAlps data to the ENA database.
 
 ### The `lib` directory
 
@@ -22,7 +22,7 @@ The `data` directory contains every XML files describing the samples and sequenc
 It also contains the `metadata_sample.csv` file containing every data needed to generate every
 XML files required by the submission process for the sample description.
 
-The `data` directory is splited in a `common` directory which contains every files related to the *PhyloNorway* umbrella project, a `csv` directory containing every up to date metadata in CSV format, and one directory by sub project. As each sub project is corresponding to a set (batch) of samples, I propose to name them `batchXX` where `XX` is an ordinal number padded on
+The `data` directory is splited in a `common` directory which contains every files related to the *PhyloAlps* umbrella project, a `csv` directory containing every up to date metadata in CSV format, and one directory by sub project. As each sub project is corresponding to a set (batch) of samples, I propose to name them `batchXX` where `XX` is an ordinal number padded on
 two digits (*e.g.* `batch01`).
 
 ### The `xml_template` directory
