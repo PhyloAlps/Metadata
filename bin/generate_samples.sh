@@ -40,7 +40,6 @@ PROJECT_NAME=$1
 
 SAMPLE_TEMPLATE="${TEMPLATE_DIR}/sample.xml"
 SAMPLE_DATA="${CSV_DIR}/PHYLOALPS_HERBARIUM_64_25jan2022.csv"
-#SAMPLE_DATA="${CSV_DIR}/test.csv"
 
 
 # The XSD file correponding to a project
@@ -80,10 +79,12 @@ pushd "${DATA_DIR}/${PROJECT_NAME}"
 for filename in $(${LIB_DIR}/process_template.awk -v PROJECT="${PROJECT_NAME}" \
                     ${SAMPLE_TEMPLATE} \
                     ${SAMPLE_DATA} \
-                    | awk '($1=="<!--") {filename=$2;        \
-                                         print filename}     \
-                                                             \
-                           ($1!="<!--") {print $0 > filename}\
+                    | awk '($1=="<!--") {if (filename != "")
+                                             close(filename)
+                                         filename=$2;        
+                                         print filename}     
+                                                             
+                           ($1!="<!--") {print $0 > filename}
                           ') ; do
 
     # Check for previous version of the sample file with an accession
