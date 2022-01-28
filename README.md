@@ -1,6 +1,6 @@
-# The PhyloNorway metadata project
+# The PhyloAlps metadata project
 
-The `PhyloNorway metadata` project is aiming to store every files related to the submission of the PhyloNorway genome skimming project to the EBI<sup>[[1]](#EBI)</sup> ENA<sup>[[2]](#ENA)</sup> database.
+The `PhyloAlps metadata` project is aiming to store every files related to the submission of the PhyloAlps genome skimming project to the EBI<sup>[[1]](#EBI)</sup> ENA<sup>[[2]](#ENA)</sup> database.
 
 ## Directories organisation
 
