@@ -182,6 +182,11 @@ for filename in $(${LIB_DIR}/process_template.awk -v ENTRY="${PROJECT_NAME}" \
         > $$.tmp
     mv $$.tmp ${filename}
 
+    sed -E 's@<LIBRARY_NAME>([^:]+):([^<]+)</LIBRARY_NAME>@<LIBRARY_NAME>\1_\2</LIBRARY_NAME>@' \
+        ${filename} \
+        > $$.tmp
+    mv $$.tmp ${filename}
+
     # Check for previous version of the sample file with an accession
     AC=$(awk -F'\.' '{print $3}' <<< $(echo ${filename/.xml/.*.xml}))
 
@@ -230,7 +235,7 @@ for filename in $(${LIB_DIR}/process_template.awk -v ENTRY="${PROJECT_NAME}" \
 
     # Check for previous version of the sample file with an accession
     AC=$(awk -F'\.' '{print $3}' <<< $(echo ${filename/.xml/.*.xml}))
-
+    echo "$(echo ${filename/.xml/.*.xml}) --> $AC"
     if [[ "$AC" != '*' ]] ; then
         SAMPLE=$(awk -F'\.' '{print $2}' <<< $(echo ${filename}))
         echo "Run $SAMPLE already submitted with AC : $AC"  1>&2

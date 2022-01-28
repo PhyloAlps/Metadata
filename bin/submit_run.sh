@@ -104,7 +104,7 @@ for file in $(ls ${PROJECT_DIR}/experiment*.xml | grep -Ev 'experiment\..+\..+\.
 	runfile=$(sed 's@/experiment\.@/run.@' <<< $file)
 
 	# Checks if the experiment file has an accession number
-	EXPERIMENT_AC=$(awk -F'\.' '{print $(NF-1)}' <<< $(echo ${file/.xml/.*.xml}))
+	EXPERIMENT_AC=$(awk -F'\.' '{print $(NF-1)}' <<< $(echo ${runfile/.xml/.*.xml}))
 	if [[ "$EXPERIMENT_AC" != '*' ]] ; then
 		echo "The experiment has an Accession Number : ${EXPERIMENT_AC}" 1>&2
 		if [[ "$PUBLISH" == "YES" ]] ; then

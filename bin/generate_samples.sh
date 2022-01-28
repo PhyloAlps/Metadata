@@ -39,7 +39,7 @@ export LANG=C
 PROJECT_NAME=$1
 
 SAMPLE_TEMPLATE="${TEMPLATE_DIR}/sample.xml"
-SAMPLE_DATA="${CSV_DIR}/libraries_orthoskim_PhyloAlps_FINAL.csv"
+SAMPLE_DATA="${CSV_DIR}/PHYLOALPS_HERBARIUM_64_25jan2022.csv"
 #SAMPLE_DATA="${CSV_DIR}/test.csv"
 
 
@@ -77,7 +77,7 @@ fi
 
 pushd "${DATA_DIR}/${PROJECT_NAME}"
 
-for filename in $(${LIB_DIR}/process_template.awk -v ENTRY="${PROJECT_NAME}" \
+for filename in $(${LIB_DIR}/process_template.awk -v PROJECT="${PROJECT_NAME}" \
                     ${SAMPLE_TEMPLATE} \
                     ${SAMPLE_DATA} \
                     | awk '($1=="<!--") {filename=$2;        \
