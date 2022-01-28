@@ -162,7 +162,7 @@ for file in $(ls ${PROJECT_DIR}/sample*xml | grep -Ev 'sample\..+\..+\.xml'); do
 		fi
 	fi
 
-	if [[ ! -z "${RETURN_AC}" ]]
+	if [[ ! -z "${RETURN_AC}" ]] ; then
 
 		# Upload the serveur version of the project file
 		curl -u "$LOGIN:$PASSWD" \

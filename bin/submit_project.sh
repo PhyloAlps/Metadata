@@ -150,7 +150,7 @@ else
     fi
 fi
 
-if [[ ! -z "${RETURN_AC}" ]]
+if [[ ! -z "${RETURN_AC}" ]] ; then
     # Upload the serveur version of the project file
     curl -u "$LOGIN:$PASSWD" \
         "${SERVER}/projects/${RETURN_AC}" > "${PROJECT_DIR}/project.${PROJECT_NAME}_$$.xml.tmp"
