@@ -51,7 +51,8 @@ EXPERIMENT_XSD_FILE="${XSD_DIR}/SRA.experiment.xsd"
 RUN_XSD_FILE="${XSD_DIR}/SRA.run.xsd"
 
 #SAMPLE_DATA="${CSV_DIR}/libraries_orthoskim_PhyloAlps_FINAL.csv"
-SAMPLE_DATA="${CSV_DIR}/PHYLOALPS_HERBARIUM_61_29nov2021.csv"
+#SAMPLE_DATA="${CSV_DIR}/PHYLOALPS_HERBARIUM_61_29nov2021.csv"
+SAMPLE_DATA="${CSV_DIR}/PHYLOALPS_HERBARIUM_64_25jan2022.csv"
 #SAMPLE_DATA="${CSV_DIR}/test.csv"
 
 function db_field {
@@ -149,21 +150,38 @@ pushd "${DATA_DIR}/${BATCH_NAME}"
 
 mkdir -p tmp
 
+( head -1 "${SAMPLE_DATA}" ; \
+  grep -v "Genoscope"  "${SAMPLE_DATA}" \
+  | grep "Batch-${BATCH_NAME}" ) > tmp/no_genoscope.csv
+
+${LIB_DIR}/prepare_sequence_data.awk \
+              -v PROJECT="${BATCH_NAME}" \
+              tmp/no_genoscope.csv > tmp/files.tmp
+
+join_csv 1 1 \
+    "${DATA_DIR}/${BATCH_NAME}/accession_list.tsv" \
+    tmp/files.tmp \
+    > ${CSV_DIR}/"sequencing_${PROJECT_NAME}_${BATCH_NAME}.csv"
+
 join_csv 3 1 \
     ${CSV_DIR}/"sequencing_${PROJECT_NAME}_${BATCH_NAME}.csv" \
     ${CSV_DIR}/"sequencing_${PROJECT_NAME}_${BATCH_NAME}.files.csv" \
     > tmp/files.tmp
 
 join_csv 1 2 \
-    "${SAMPLE_DATA}" \
+    tmp/no_genoscope.csv \
     tmp/files.tmp \
-    > tmp/data.tmp 
+    | sed 's/SAMPLE_ENA_AC//' \
+    | sed 's/,,/,/' > "tmp/data.tmp"
 
-rm -f tmp/files.tmp
+#rm -f tmp/files*.tmp
+#rm -f tmp/no_genoscope.csv
 
 echo "Generating experiment XML files" 1>&2
 
-for filename in $(${LIB_DIR}/process_template.awk -v ENTRY="${PROJECT_NAME}" \
+for filename in $(${LIB_DIR}/process_template.awk \
+                    -v ENTRY="${PROJECT_NAME}" \
+                    -v STUDY="ERP135067" \
                     ${EXPERIMENT_TEMPLATE} \
                     "tmp/data.tmp" \
                     | awk '($1=="<!--") {filename=$2;        \

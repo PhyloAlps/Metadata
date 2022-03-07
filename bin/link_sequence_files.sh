@@ -1,4 +1,7 @@
 #!/bin/bash
+#
+# Reccueil de commande à faire tourner sur luke
+#
 
 function LIBRARY_LAYOUT {
     local library=$1
@@ -77,6 +80,37 @@ function LIBRARY_FILES {
 for lib in $(awk -F',' '(NR>1) {print $3}' sequencing_orthoskim_PhyloAlps_FINAL.csv) ; do 
     echo $(LIBRARY_FILES $lib),$(LIBRARY_LAYOUT $lib)
 done) > 
+
+interactive.phyloalps
+phyloskims
+module load orgasm
+
+(echo "Sequencing_ID,ALIAS,ENA_FILE_FWD,ENA_FILE_REV,LOCAL_FILE_FWD,LOCAL_FILE_REV,MD5_FWD,MD5_REV,LIBRARY_LAYOUT" 
+for lib in $(cat PHYLOALPS_HERBARIUM_64_25jan2022.csv \
+                | grep Batch-Clades \
+                | grep -v Genoscope \
+                | awk -F',' '{print $NF}')  ; do 
+    echo $(LIBRARY_FILES $lib),$(LIBRARY_LAYOUT $lib)
+done) > Batch-Clades.sequence_files.csv
+
+awk -F ',' 'BEGIN {
+                    print "rm -rf batch-to-submit"  
+                    print "mkdir batch-to-submit" 
+                    print "pushd batch-to-submit"
+                  }
+            (NR>1){
+                    printf "ln -s '\''%s'\''\n",$5
+                    printf "ln -s '\''%s'\''\n",$6
+                  } 
+            END   {
+                    print "popd"
+                  }' Batch-Clades.sequence_files.csv \
+    | bash
+
+cd batch-to-submit
+ascp  -QT -l300M -L- * Webin-43547@webin.ebi.ac.uk:.
+
+
 
 # expe=$NF;sub(/(_clean)?\..+\..+$/,"",expe);
 # awk -F ',' 'BEGIN {print "mkdir batch-to-submit"; print "pushd batch-to-submit"}{printf "ln -s '\''%s'\''\n",$(NF-2);printf "ln -s '\''%s'\''\n",$(NF-1)} END {print "popd"}' sequencing_orthoskim_PhyloAlps_FINAL.files.csv | bash
